@@ -8,19 +8,22 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
-    const { first_name, whatsapp, monthly_send_amount, destination_country, lang } = body
+    const { first_name, phone, email, monthly_send_amount, destination_country, remittance_provider, lang } = body
 
     if (!first_name?.trim()) {
       return NextResponse.json({ error: 'First name is required' }, { status: 400 })
     }
-    if (!whatsapp?.trim()) {
-      return NextResponse.json({ error: 'WhatsApp number is required' }, { status: 400 })
+    if (!phone?.trim()) {
+      return NextResponse.json({ error: 'Phone number is required' }, { status: 400 })
     }
     if (!monthly_send_amount) {
       return NextResponse.json({ error: 'Monthly send amount is required' }, { status: 400 })
     }
     if (!destination_country) {
       return NextResponse.json({ error: 'Destination country is required' }, { status: 400 })
+    }
+    if (!remittance_provider) {
+      return NextResponse.json({ error: 'Remittance provider is required' }, { status: 400 })
     }
 
     const url = new URL(req.url)
@@ -31,9 +34,11 @@ export async function POST(req: NextRequest) {
     const supabase = getSupabaseClient()
     const { error } = await supabase.from('waitlist').insert({
       first_name: first_name.trim(),
-      whatsapp: whatsapp.trim(),
+      phone: phone.trim(),
+      email: email?.trim() || null,
       monthly_send_amount,
       destination_country,
+      remittance_provider,
       language_preference: lang || 'en',
       utm_source: url.searchParams.get('utm_source') ?? utm_source,
       utm_medium: url.searchParams.get('utm_medium'),
@@ -45,7 +50,7 @@ export async function POST(req: NextRequest) {
       console.error('Supabase insert error:', error)
       const ph = getPostHogClient()
       ph.capture({
-        distinctId: distinctId ?? whatsapp.trim(),
+        distinctId: distinctId ?? phone.trim(),
         event: 'waitlist_signup_failed',
         properties: {
           destination_country,
@@ -60,19 +65,21 @@ export async function POST(req: NextRequest) {
 
     const ph = getPostHogClient()
     ph.identify({
-      distinctId: distinctId ?? whatsapp.trim(),
+      distinctId: distinctId ?? phone.trim(),
       properties: {
         first_name: first_name.trim(),
-        whatsapp: whatsapp.trim(),
+        phone: phone.trim(),
+        email: email?.trim() || undefined,
         language_preference: lang || 'en',
       },
     })
     ph.capture({
-      distinctId: distinctId ?? whatsapp.trim(),
+      distinctId: distinctId ?? phone.trim(),
       event: 'waitlist_signup_completed',
       properties: {
         destination_country,
         monthly_send_amount,
+        remittance_provider,
         language: lang || 'en',
         utm_source: url.searchParams.get('utm_source') ?? utm_source,
         utm_medium: url.searchParams.get('utm_medium'),

@@ -55,12 +55,16 @@ export type Translations = {
   form: {
     firstName: string
     firstNamePlaceholder: string
-    whatsapp: string
-    whatsappPlaceholder: string
+    phone: string
+    phonePlaceholder: string
+    email: string
+    emailPlaceholder: string
     monthlyAmount: string
     monthlyAmountOptions: Array<{ value: string; label: string }>
     destination: string
     destinationOptions: Array<{ value: string; label: string }>
+    remittanceProvider: string
+    remittanceProviderOptions: Array<{ value: string; label: string }>
     submit: string
     submitting: string
     successTitle: string
@@ -205,8 +209,10 @@ const en: Translations = {
   form: {
     firstName: 'First name',
     firstNamePlaceholder: 'Maria',
-    whatsapp: 'WhatsApp number',
-    whatsappPlaceholder: '+1 (801) 555-0123',
+    phone: 'Phone number / WhatsApp',
+    phonePlaceholder: '+1 (801) 555-0123',
+    email: 'Email address (optional)',
+    emailPlaceholder: 'maria@email.com',
     monthlyAmount: 'How much do you send home per month?',
     monthlyAmountOptions: [
       { value: '', label: 'Select an amount' },
@@ -220,15 +226,38 @@ const en: Translations = {
       { value: '', label: 'Select a country' },
       { value: 'mexico', label: 'Mexico' },
       { value: 'philippines', label: 'Philippines' },
-      { value: 'central_america', label: 'Central America' },
+      { value: 'guatemala', label: 'Guatemala' },
+      { value: 'el_salvador', label: 'El Salvador' },
+      { value: 'honduras', label: 'Honduras' },
+      { value: 'dominican_republic', label: 'Dominican Republic' },
+      { value: 'colombia', label: 'Colombia' },
+      { value: 'ecuador', label: 'Ecuador' },
+      { value: 'peru', label: 'Peru' },
       { value: 'venezuela', label: 'Venezuela' },
+      { value: 'india', label: 'India' },
+      { value: 'nigeria', label: 'Nigeria' },
+      { value: 'vietnam', label: 'Vietnam' },
+      { value: 'other', label: 'Other' },
+    ],
+    remittanceProvider: 'What do you currently use to send money?',
+    remittanceProviderOptions: [
+      { value: '', label: 'Select a provider' },
+      { value: 'western_union', label: 'Western Union' },
+      { value: 'remitly', label: 'Remitly' },
+      { value: 'moneygram', label: 'MoneyGram' },
+      { value: 'wise', label: 'Wise' },
+      { value: 'xoom', label: 'PayPal / Xoom' },
+      { value: 'zelle', label: 'Zelle' },
+      { value: 'cash_app', label: 'Cash App' },
+      { value: 'bank_wire', label: 'Bank wire' },
+      { value: 'cash', label: 'Cash / in person' },
       { value: 'other', label: 'Other' },
     ],
     submit: 'Join the waitlist — it\'s free',
     submitting: 'Joining...',
     successTitle: "You're on the list.",
     successMessage:
-      "We'll WhatsApp you the moment we launch. Tell your friends — the more people who join, the faster we get there.",
+      "We'll reach out the moment we launch. Tell your friends — the more people who join, the faster we get there.",
     errorMessage:
       'Something went wrong. Please try again or message us on WhatsApp.',
     selectPlaceholder: 'Select...',
@@ -371,8 +400,10 @@ const es: Translations = {
   form: {
     firstName: 'Nombre',
     firstNamePlaceholder: 'María',
-    whatsapp: 'Número de WhatsApp',
-    whatsappPlaceholder: '+1 (801) 555-0123',
+    phone: 'Número de teléfono / WhatsApp',
+    phonePlaceholder: '+1 (801) 555-0123',
+    email: 'Correo electrónico (opcional)',
+    emailPlaceholder: 'maria@correo.com',
     monthlyAmount: '¿Cuánto envías a casa por mes?',
     monthlyAmountOptions: [
       { value: '', label: 'Selecciona un monto' },
@@ -386,15 +417,38 @@ const es: Translations = {
       { value: '', label: 'Selecciona un país' },
       { value: 'mexico', label: 'México' },
       { value: 'philippines', label: 'Filipinas' },
-      { value: 'central_america', label: 'Centroamérica' },
+      { value: 'guatemala', label: 'Guatemala' },
+      { value: 'el_salvador', label: 'El Salvador' },
+      { value: 'honduras', label: 'Honduras' },
+      { value: 'dominican_republic', label: 'República Dominicana' },
+      { value: 'colombia', label: 'Colombia' },
+      { value: 'ecuador', label: 'Ecuador' },
+      { value: 'peru', label: 'Perú' },
       { value: 'venezuela', label: 'Venezuela' },
+      { value: 'india', label: 'India' },
+      { value: 'nigeria', label: 'Nigeria' },
+      { value: 'vietnam', label: 'Vietnam' },
+      { value: 'other', label: 'Otro' },
+    ],
+    remittanceProvider: '¿Qué usas actualmente para enviar dinero?',
+    remittanceProviderOptions: [
+      { value: '', label: 'Selecciona un proveedor' },
+      { value: 'western_union', label: 'Western Union' },
+      { value: 'remitly', label: 'Remitly' },
+      { value: 'moneygram', label: 'MoneyGram' },
+      { value: 'wise', label: 'Wise' },
+      { value: 'xoom', label: 'PayPal / Xoom' },
+      { value: 'zelle', label: 'Zelle' },
+      { value: 'cash_app', label: 'Cash App' },
+      { value: 'bank_wire', label: 'Transferencia bancaria' },
+      { value: 'cash', label: 'Efectivo / en persona' },
       { value: 'other', label: 'Otro' },
     ],
     submit: 'Únete a la lista — es gratis',
     submitting: 'Uniéndote...',
     successTitle: 'Ya estás en la lista.',
     successMessage:
-      'Te avisaremos por WhatsApp en el momento que lancemos. Díselo a tus amigos — entre más personas se unan, más rápido llegamos.',
+      'Te avisaremos en el momento que lancemos. Díselo a tus amigos — entre más personas se unan, más rápido llegamos.',
     errorMessage:
       'Algo salió mal. Por favor intenta de nuevo o escríbenos por WhatsApp.',
     selectPlaceholder: 'Seleccionar...',

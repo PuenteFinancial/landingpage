@@ -22,9 +22,11 @@ function Spinner() {
 export default function WaitlistForm({ variant = 'dark' }: Props) {
   const { t, lang } = useLanguage()
   const [firstName, setFirstName] = useState('')
-  const [whatsapp, setWhatsapp] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
   const [monthlyAmount, setMonthlyAmount] = useState('')
   const [destination, setDestination] = useState('')
+  const [remittanceProvider, setRemittanceProvider] = useState('')
   const [status, setStatus] = useState<Status>('idle')
 
   const isDark = variant === 'dark'
@@ -58,21 +60,25 @@ export default function WaitlistForm({ variant = 'dark' }: Props) {
         },
         body: JSON.stringify({
           first_name: firstName,
-          whatsapp,
+          phone,
+          email: email || null,
           monthly_send_amount: monthlyAmount,
           destination_country: destination,
+          remittance_provider: remittanceProvider,
           lang,
         }),
       })
       if (!res.ok) throw new Error('Failed')
 
-      posthog.identify(whatsapp, {
+      posthog.identify(phone, {
         first_name: firstName,
+        email: email || undefined,
         language_preference: lang,
       })
       posthog.capture('waitlist_form_submitted', {
         destination_country: destination,
         monthly_send_amount: monthlyAmount,
+        remittance_provider: remittanceProvider,
         language: lang,
       })
 
@@ -117,13 +123,25 @@ export default function WaitlistForm({ variant = 'dark' }: Props) {
       </div>
 
       <div>
-        <label className={labelClass}>{t.form.whatsapp}</label>
+        <label className={labelClass}>{t.form.phone}</label>
         <input
           type="tel"
           required
-          value={whatsapp}
-          onChange={(e) => setWhatsapp(e.target.value)}
-          placeholder={t.form.whatsappPlaceholder}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder={t.form.phonePlaceholder}
+          className={inputClass}
+          disabled={status === 'loading'}
+        />
+      </div>
+
+      <div>
+        <label className={labelClass}>{t.form.email}</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder={t.form.emailPlaceholder}
           className={inputClass}
           disabled={status === 'loading'}
         />
@@ -164,6 +182,30 @@ export default function WaitlistForm({ variant = 'dark' }: Props) {
             disabled={status === 'loading'}
           >
             {t.form.destinationOptions.map((opt) => (
+              <option key={opt.value} value={opt.value} disabled={opt.value === ''}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+            <svg className={`w-4 h-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label className={labelClass}>{t.form.remittanceProvider}</label>
+        <div className="relative">
+          <select
+            required
+            value={remittanceProvider}
+            onChange={(e) => setRemittanceProvider(e.target.value)}
+            className={selectClass}
+            disabled={status === 'loading'}
+          >
+            {t.form.remittanceProviderOptions.map((opt) => (
               <option key={opt.value} value={opt.value} disabled={opt.value === ''}>
                 {opt.label}
               </option>
