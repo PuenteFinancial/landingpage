@@ -19,10 +19,20 @@ export const metadata: Metadata = {
   title: 'Puente Financial — Send Money Home Free, Build Credit Automatically',
   description:
     'The credit card for immigrants. Send money home for free, build your US credit score automatically, and earn points toward flights home.',
+  metadataBase: new URL('https://www.puentefinancial.com'),
   openGraph: {
     title: 'Puente Financial',
     description: 'Send money home free. Build your credit automatically.',
+    url: 'https://www.puentefinancial.com',
+    siteName: 'Puente Financial',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Puente Financial' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Puente Financial — Send Money Home Free',
+    description: 'The credit card for immigrants. Send money home for free, build your US credit score automatically.',
+    images: ['/og-image.png'],
   },
 }
 

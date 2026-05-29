@@ -17,10 +17,10 @@ export default function Footer() {
             <p className="text-gray-400 text-sm mt-1">{t.footer.tagline}</p>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <a href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
               {t.footer.privacy}
             </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <a href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
               {t.footer.terms}
             </a>
           </div>
