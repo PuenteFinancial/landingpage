@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useLanguage } from '@/components/LanguageProvider'
+import posthog from 'posthog-js'
 
 function ChevronIcon({ open }: { open: boolean }) {
   return (
@@ -20,7 +21,16 @@ export default function FAQ() {
   const { t } = useLanguage()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
-  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i)
+  const toggle = (i: number) => {
+    const isOpening = openIndex !== i
+    setOpenIndex(isOpening ? i : null)
+    if (isOpening) {
+      posthog.capture('faq_item_opened', {
+        question: t.faq.items[i]?.q,
+        item_index: i,
+      })
+    }
+  }
 
   return (
     <section id="faq" className="bg-white py-20 md:py-32">

@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSupabaseClient } from '@/lib/supabase'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export async function POST(req: NextRequest) {
+  const distinctId = req.headers.get('X-POSTHOG-DISTINCT-ID')
+  const sessionId = req.headers.get('X-POSTHOG-SESSION-ID')
+
   try {
     const body = await req.json()
     const { first_name, whatsapp, monthly_send_amount, destination_country, lang } = body
@@ -39,12 +43,49 @@ export async function POST(req: NextRequest) {
 
     if (error) {
       console.error('Supabase insert error:', error)
+      const ph = getPostHogClient()
+      ph.capture({
+        distinctId: distinctId ?? whatsapp.trim(),
+        event: 'waitlist_signup_failed',
+        properties: {
+          destination_country,
+          monthly_send_amount,
+          language: lang || 'en',
+          error: error.message,
+          $session_id: sessionId ?? undefined,
+        },
+      })
       return NextResponse.json({ error: 'Failed to join waitlist' }, { status: 500 })
     }
+
+    const ph = getPostHogClient()
+    ph.identify({
+      distinctId: distinctId ?? whatsapp.trim(),
+      properties: {
+        first_name: first_name.trim(),
+        whatsapp: whatsapp.trim(),
+        language_preference: lang || 'en',
+      },
+    })
+    ph.capture({
+      distinctId: distinctId ?? whatsapp.trim(),
+      event: 'waitlist_signup_completed',
+      properties: {
+        destination_country,
+        monthly_send_amount,
+        language: lang || 'en',
+        utm_source: url.searchParams.get('utm_source') ?? utm_source,
+        utm_medium: url.searchParams.get('utm_medium'),
+        utm_campaign: url.searchParams.get('utm_campaign'),
+        $session_id: sessionId ?? undefined,
+      },
+    })
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (err) {
     console.error('Waitlist API error:', err)
+    const ph = getPostHogClient()
+    ph.captureException(err, distinctId ?? 'anonymous')
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

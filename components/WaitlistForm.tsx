@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useLanguage } from '@/components/LanguageProvider'
+import posthog from 'posthog-js'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
@@ -43,10 +44,18 @@ export default function WaitlistForm({ variant = 'dark' }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
+
+    const distinctId = posthog.get_distinct_id()
+    const sessionId = posthog.get_session_id()
+
     try {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-POSTHOG-DISTINCT-ID': distinctId ?? '',
+          'X-POSTHOG-SESSION-ID': sessionId ?? '',
+        },
         body: JSON.stringify({
           first_name: firstName,
           whatsapp,
@@ -56,8 +65,20 @@ export default function WaitlistForm({ variant = 'dark' }: Props) {
         }),
       })
       if (!res.ok) throw new Error('Failed')
+
+      posthog.identify(whatsapp, {
+        first_name: firstName,
+        language_preference: lang,
+      })
+      posthog.capture('waitlist_form_submitted', {
+        destination_country: destination,
+        monthly_send_amount: monthlyAmount,
+        language: lang,
+      })
+
       setStatus('success')
-    } catch {
+    } catch (err) {
+      posthog.captureException(err)
       setStatus('error')
     }
   }

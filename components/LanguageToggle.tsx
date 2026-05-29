@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/components/LanguageProvider'
 import type { Lang } from '@/lib/translations'
+import posthog from 'posthog-js'
 
 export default function LanguageToggle() {
   const { lang, setLang } = useLanguage()
@@ -11,7 +12,12 @@ export default function LanguageToggle() {
       {(['en', 'es'] as Lang[]).map((l) => (
         <button
           key={l}
-          onClick={() => setLang(l)}
+          onClick={() => {
+            if (l !== lang) {
+              posthog.capture('language_switched', { from: lang, to: l })
+            }
+            setLang(l)
+          }}
           className={`px-3 py-1 rounded-full text-sm font-bold uppercase tracking-widest transition-all duration-200 ${
             lang === l
               ? 'bg-puente-sky text-white shadow-sm'
