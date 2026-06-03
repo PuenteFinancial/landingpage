@@ -210,10 +210,16 @@ Smooth scroll + `scroll-margin-top:96px` so anchors clear the sticky nav.
 
 ## Assets
 - **Fonts:** Space Grotesk + Space Mono (Google Fonts).
+- **`favicon.svg`** — the Puente arch mark (ink arch on a yellow `#FFD23D` rounded tile). Ship at site
+  root; referenced via `<link rel="icon" type="image/svg+xml">` + `apple-touch-icon`. Generate .ico/PNG
+  fallbacks (16/32/180/512) from it if you need legacy/PWA support.
+- **`og-image.png`** — 1200×630 social link-preview image. Ship at site root.
+- **Social meta tags** are already wired into `Puente - Web Landing.html` `<head>` (Open Graph +
+  Twitter). **Swap `https://puente.com` for the live domain** so `og:url` / `og:image` resolve to
+  absolute URLs — social platforms will not render a relative image path.
 - **Logo, PhoneApp, CreditCard:** CSS/SVG components in `brand-ui.jsx` — no external image files.
   Recreate as components, or swap in real product renders/photography if available.
 - **Flag / icons:** inline SVG + CSS (Mexico flag is a 3-stripe CSS dot; checkmarks/arrows are inline SVG).
-- No raster image assets are required.
 
 ## Files
 Design reference files included in this bundle:

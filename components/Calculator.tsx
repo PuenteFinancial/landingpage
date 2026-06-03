@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLanguage } from '@/components/LanguageProvider'
 import { FX_RATE, FX_FEE } from '@/lib/fx'
 
@@ -11,10 +11,18 @@ const CHIPS = [100, 200, 500, 1000]
 export default function Calculator() {
   const { t } = useLanguage()
   const [amt, setAmt] = useState<number | ''>(200)
+  const [rate, setRate] = useState(FX_RATE)
   const c = t.remit.calc
 
+  useEffect(() => {
+    fetch('/api/fx-rate')
+      .then((r) => r.json())
+      .then((d) => { if (typeof d.rate === 'number') setRate(d.rate) })
+      .catch(() => {})
+  }, [])
+
   const numAmt = Number(amt) || 0
-  const receive = Math.round(numAmt * FX_RATE)
+  const receive = Math.round(numAmt * rate)
   const total = numAmt + FX_FEE
 
   return (
@@ -73,7 +81,9 @@ export default function Calculator() {
       </div>
 
       <div className="calc-rate">
-        <span className="ln" /><span>{c.rate}</span><span className="ln" />
+        <span className="ln" />
+        <span>1 USD = {rate.toFixed(2)} MXN</span>
+        <span className="ln" />
       </div>
 
       <div className="calc-amt calc-amt--rcv">
