@@ -6,42 +6,28 @@ import posthog from 'posthog-js'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
-interface Props {
-  variant?: 'dark' | 'light'
-}
-
-function Spinner() {
-  return (
-    <svg className="animate-spin w-4 h-4 inline mr-2" fill="none" viewBox="0 0 24 24">
-      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-    </svg>
-  )
-}
-
-export default function WaitlistForm({ variant = 'dark' }: Props) {
+export default function WaitlistForm() {
   const { t, lang } = useLanguage()
-  const [firstName, setFirstName] = useState('')
+  const s = t.wl
+
+  const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
-  const [monthlyAmount, setMonthlyAmount] = useState('')
-  const [destination, setDestination] = useState('')
-  const [remittanceProvider, setRemittanceProvider] = useState('')
+  const [country, setCountry] = useState('')
+  const [amount, setAmount] = useState('')
+  const [provider, setProvider] = useState('')
   const [status, setStatus] = useState<Status>('idle')
+  const [copied, setCopied] = useState(false)
 
-  const isDark = variant === 'dark'
+  const slug = (name.trim().split(/\s+/)[0] || 'amigo').toLowerCase().replace(/[^a-z0-9]/g, '') || 'amigo'
+  const refLink = 'puente.com/r/' + slug
+  const waHref = 'https://wa.me/?text=' + encodeURIComponent(s.success.waText + ' https://' + refLink)
 
-  const labelClass = `block text-sm font-medium mb-1.5 ${isDark ? 'text-gray-300' : 'text-gray-700'}`
-
-  const inputClass = `w-full px-4 py-3 rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-puente-sky/50 ${
-    isDark
-      ? 'bg-white/10 border border-white/15 text-white placeholder-gray-500 focus:border-puente-sky focus:bg-white/15'
-      : 'bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-puente-sky'
-  }`
-
-  const selectClass = `${inputClass} cursor-pointer appearance-none ${
-    isDark ? '[&>option]:bg-[#0F2A4A] [&>option]:text-white' : '[&>option]:bg-white [&>option]:text-gray-900'
-  }`
+  const copyLink = () => {
+    navigator.clipboard?.writeText('https://' + refLink).catch(() => {})
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1600)
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -59,184 +45,151 @@ export default function WaitlistForm({ variant = 'dark' }: Props) {
           'X-POSTHOG-SESSION-ID': sessionId ?? '',
         },
         body: JSON.stringify({
-          first_name: firstName,
+          first_name: name,
           phone,
-          email: email || null,
-          monthly_send_amount: monthlyAmount,
-          destination_country: destination,
-          remittance_provider: remittanceProvider,
+          email,
+          monthly_send_amount: amount,
+          destination_country: country,
+          remittance_provider: provider,
           lang,
         }),
       })
+
       if (!res.ok) throw new Error('Failed')
 
-      posthog.identify(phone, {
-        first_name: firstName,
-        email: email || undefined,
-        language_preference: lang,
-      })
+      posthog.identify(phone, { first_name: name, email, language_preference: lang })
       posthog.capture('waitlist_form_submitted', {
-        destination_country: destination,
-        monthly_send_amount: monthlyAmount,
-        remittance_provider: remittanceProvider,
+        destination_country: country,
+        monthly_send_amount: amount,
+        remittance_provider: provider,
         language: lang,
       })
 
       setStatus('success')
-    } catch (err) {
-      posthog.captureException(err)
+    } catch {
+      posthog.captureException(new Error('Waitlist form submission failed'))
       setStatus('error')
     }
   }
 
   if (status === 'success') {
     return (
-      <div className="text-center py-6">
-        <div className="w-14 h-14 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center mx-auto mb-4">
-          <svg className="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-          </svg>
+      <div className="wl-card">
+        <div className="wl-success">
+          <div className="wl-check">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3>{s.success.title}</h3>
+          <p>{s.success.body}</p>
+          <div className="wl-ref">
+            <span className="rl">{s.success.refLabel}</span>
+            <div className="wl-reflink">
+              <input readOnly value={refLink} onFocus={(e) => e.target.select()} />
+              <button className="btn btn--ink btn--sm" onClick={copyLink}>
+                {copied ? s.success.copied : s.success.copy}
+              </button>
+            </div>
+            <div className="wl-share">
+              <a className="btn btn--sm wl-wa" href={waHref} target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.5-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.2.5.2.5.4.1.2.1.8-.2 1.5Z" />
+                </svg>
+                {s.success.wa}
+              </a>
+            </div>
+          </div>
         </div>
-        <h3 className={`font-display font-bold text-xl mb-2 ${isDark ? 'text-white' : 'text-puente-navy'}`}>
-          {t.form.successTitle}
-        </h3>
-        <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-          {t.form.successMessage}
-        </p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label className={labelClass}>{t.form.firstName}</label>
-        <input
-          type="text"
-          required
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder={t.form.firstNamePlaceholder}
-          className={inputClass}
-          disabled={status === 'loading'}
-        />
-      </div>
-
-      <div>
-        <label className={labelClass}>{t.form.phone}</label>
-        <input
-          type="tel"
-          required
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder={t.form.phonePlaceholder}
-          className={inputClass}
-          disabled={status === 'loading'}
-        />
-      </div>
-
-      <div>
-        <label className={labelClass}>{t.form.email}</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={t.form.emailPlaceholder}
-          className={inputClass}
-          disabled={status === 'loading'}
-        />
-      </div>
-
-      <div>
-        <label className={labelClass}>{t.form.monthlyAmount}</label>
-        <div className="relative">
-          <select
+    <div className="wl-card">
+      <form className="wl-form" onSubmit={handleSubmit}>
+        <div className="field">
+          <label>{s.f.name}</label>
+          <input
             required
-            value={monthlyAmount}
-            onChange={(e) => setMonthlyAmount(e.target.value)}
-            className={selectClass}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder={s.ph.name}
             disabled={status === 'loading'}
-          >
-            {t.form.monthlyAmountOptions.map((opt) => (
-              <option key={opt.value} value={opt.value} disabled={opt.value === ''}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-            <svg className={`w-4 h-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+          />
+        </div>
+        <div className="field-row">
+          <div className="field">
+            <label>{s.f.phone}</label>
+            <input
+              required
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder={s.ph.phone}
+              disabled={status === 'loading'}
+            />
+          </div>
+          <div className="field">
+            <label>{s.f.email}</label>
+            <input
+              required
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={s.ph.email}
+              disabled={status === 'loading'}
+            />
           </div>
         </div>
-      </div>
-
-      <div>
-        <label className={labelClass}>{t.form.destination}</label>
-        <div className="relative">
-          <select
-            required
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-            className={selectClass}
-            disabled={status === 'loading'}
-          >
-            {t.form.destinationOptions.map((opt) => (
-              <option key={opt.value} value={opt.value} disabled={opt.value === ''}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-            <svg className={`w-4 h-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+        <div className="field-row">
+          <div className="field">
+            <label>{s.f.country}</label>
+            <select
+              required
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              disabled={status === 'loading'}
+            >
+              <option value="" disabled>{s.select}</option>
+              {s.countries.map((o) => <option key={o} value={o}>{o}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <label>{s.f.amount}</label>
+            <select
+              required
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              disabled={status === 'loading'}
+            >
+              <option value="" disabled>{s.select}</option>
+              {s.amounts.map((o) => <option key={o} value={o}>{o}</option>)}
+            </select>
           </div>
         </div>
-      </div>
-
-      <div>
-        <label className={labelClass}>{t.form.remittanceProvider}</label>
-        <div className="relative">
+        <div className="field">
+          <label>{s.f.provider}</label>
           <select
             required
-            value={remittanceProvider}
-            onChange={(e) => setRemittanceProvider(e.target.value)}
-            className={selectClass}
+            value={provider}
+            onChange={(e) => setProvider(e.target.value)}
             disabled={status === 'loading'}
           >
-            {t.form.remittanceProviderOptions.map((opt) => (
-              <option key={opt.value} value={opt.value} disabled={opt.value === ''}>
-                {opt.label}
-              </option>
-            ))}
+            <option value="" disabled>{s.select}</option>
+            {s.providers.map((o) => <option key={o} value={o}>{o}</option>)}
           </select>
-          <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-            <svg className={`w-4 h-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
         </div>
-      </div>
-
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className="w-full bg-puente-sky hover:bg-blue-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-4 rounded-full transition-colors text-base shadow-lg shadow-puente-sky/25 mt-2"
-      >
-        {status === 'loading' ? (
-          <>
-            <Spinner />
-            {t.form.submitting}
-          </>
-        ) : (
-          t.form.submit
+        <button className="btn btn--sol" type="submit" disabled={status === 'loading'}>
+          {status === 'loading' ? '…' : s.submit}
+        </button>
+        {status === 'error' && (
+          <p style={{ color: 'var(--coral)', fontFamily: 'var(--mono)', fontSize: 12, textAlign: 'center', margin: '4px 0 0' }}>
+            Something went wrong. Please try again.
+          </p>
         )}
-      </button>
-
-      {status === 'error' && (
-        <p className="text-red-400 text-sm text-center mt-2">{t.form.errorMessage}</p>
-      )}
-    </form>
+        <p className="wl-fine">{s.fine}</p>
+      </form>
+    </div>
   )
 }

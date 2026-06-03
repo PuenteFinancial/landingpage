@@ -1,30 +1,24 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans, DM_Sans, Hanken_Grotesk } from 'next/font/google'
+import { Space_Grotesk, Space_Mono } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/components/LanguageProvider'
 
-const plusJakarta = Plus_Jakarta_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-display',
-  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-space',
+  weight: ['400', '500', '600', '700'],
 })
 
-const dmSans = DM_Sans({
+const spaceMono = Space_Mono({
   subsets: ['latin'],
-  variable: '--font-body',
-  weight: ['400', '500', '600'],
-})
-
-const hankenGrotesk = Hanken_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-brand',
-  weight: ['400', '600', '700', '800', '900'],
+  variable: '--font-mono-space',
+  weight: ['400', '700'],
 })
 
 export const metadata: Metadata = {
   title: 'Puente Financial — Send Money Home Free, Build Credit Automatically',
   description:
-    'The credit card for immigrants. Send money home for free, build your US credit score automatically, and earn points toward flights home.',
+    'The credit card for immigrants. Send money home for free, build your US credit score automatically, and earn rewards.',
   metadataBase: new URL('https://www.puentefinancial.com'),
   icons: {
     icon: [
@@ -54,7 +48,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${plusJakarta.variable} ${dmSans.variable} ${hankenGrotesk.variable}`}>
+      <body className={`${spaceGrotesk.variable} ${spaceMono.variable}`}>
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

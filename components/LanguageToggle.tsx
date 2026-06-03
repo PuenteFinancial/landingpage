@@ -1,32 +1,33 @@
 'use client'
 
 import { useLanguage } from '@/components/LanguageProvider'
-import type { Lang } from '@/lib/translations'
 import posthog from 'posthog-js'
 
 export default function LanguageToggle() {
   const { lang, setLang } = useLanguage()
 
   return (
-    <div className="flex items-center bg-white/10 rounded-full p-1 gap-0.5">
-      {(['en', 'es'] as Lang[]).map((l) => (
-        <button
-          key={l}
-          onClick={() => {
-            if (l !== lang) {
-              posthog.capture('language_switched', { from: lang, to: l })
-            }
-            setLang(l)
-          }}
-          className={`px-3 py-1 rounded-full text-sm font-bold uppercase tracking-widest transition-all duration-200 ${
-            lang === l
-              ? 'bg-puente-sky text-white shadow-sm'
-              : 'text-white/50 hover:text-white/80'
-          }`}
-        >
-          {l}
-        </button>
-      ))}
-    </div>
+    <span className="lang">
+      <button
+        className={lang === 'es' ? 'is-active' : ''}
+        onClick={() => {
+          if (lang !== 'es') posthog.capture('language_switched', { from: lang, to: 'es' })
+          setLang('es')
+        }}
+        aria-label="Español"
+      >
+        ES
+      </button>
+      <button
+        className={lang === 'en' ? 'is-active' : ''}
+        onClick={() => {
+          if (lang !== 'en') posthog.capture('language_switched', { from: lang, to: 'en' })
+          setLang('en')
+        }}
+        aria-label="English"
+      >
+        EN
+      </button>
+    </span>
   )
 }

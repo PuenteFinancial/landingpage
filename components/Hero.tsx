@@ -1,77 +1,56 @@
 'use client'
 
 import { useLanguage } from '@/components/LanguageProvider'
-import WaitlistForm from '@/components/WaitlistForm'
+import PhoneAppUI from '@/components/PhoneAppUI'
+import CreditCardUI from '@/components/CreditCardUI'
+
+const H1_COLORS = ['var(--mar-700)', 'var(--cielo)', 'var(--coral)']
+const DOT_CLASSES = ['dot', 'dot dot--cielo', 'dot dot--coral']
 
 export default function Hero() {
   const { t } = useLanguage()
 
   return (
-    <section className="min-h-screen bg-puente-navy pt-16 relative overflow-hidden flex items-center">
-      {/* Atmospheric background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute top-0 right-0 w-[60%] h-[70%] opacity-30"
-          style={{ background: 'radial-gradient(ellipse at top right, #2D6BE420 0%, transparent 60%)' }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-[40%] h-[50%] opacity-20"
-          style={{ background: 'radial-gradient(ellipse at bottom left, #F5A62315 0%, transparent 60%)' }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
-            backgroundSize: '64px 64px',
-          }}
-        />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          {/* Left: Text content */}
-          <div className="space-y-6 lg:pt-6">
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2.5 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-1.5">
-              <span className="relative flex h-2 w-2 flex-shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+    <header className="hero">
+      <div className="hero-inner">
+        <div className="hero-copy">
+          <span className="eyebrow">{t.hero.eyebrow}</span>
+          <h1 className="h1">
+            {t.hero.h1.map((pair, i) => (
+              <span key={i} style={{ display: 'block' }}>
+                {pair[0]}{' '}
+                <span style={{ color: H1_COLORS[i] }}>{pair[1]}</span>
               </span>
-              <span className="text-green-400 text-sm font-medium">Now accepting waitlist</span>
-            </div>
-
-            {/* Bilingual taglines */}
-            <div className="space-y-1">
-              <p className="text-white text-xl md:text-2xl font-display font-semibold leading-snug">
-                {t.hero.taglineEn}
-              </p>
-              <div className="h-px bg-gradient-to-r from-white/10 to-transparent my-1.5" />
-              <p className="text-puente-gold text-xl md:text-2xl font-display font-semibold leading-snug">
-                {t.hero.taglineEs}
-              </p>
-            </div>
-
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-display font-extrabold text-white leading-[1.06] whitespace-pre-line tracking-tight">
-              {t.hero.headline}
-            </h1>
-
-            {/* Subheadline */}
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-lg">
-              {t.hero.subheadline}
-            </p>
+            ))}
+          </h1>
+          <p className="lede">{t.hero.sub}</p>
+          <div className="hero-cta">
+            <a className="btn btn--sol" href="#waitlist">{t.hero.cta1}</a>
+            <a className="btn btn--ghost" href="#remittances">{t.hero.cta2} →</a>
           </div>
-
-          {/* Right: Waitlist form */}
-          <div>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
-              <p className="text-white font-display font-bold text-lg mb-4">{t.hero.ctaPrimary} →</p>
-              <WaitlistForm variant="dark" />
-            </div>
+          <span className="hero-elig">
+            <span className="idot">ID</span>
+            {t.hero.elig}
+          </span>
+          <div className="hero-note">
+            {t.hero.notes.map((note, i) => (
+              <span key={i}>
+                <span className={DOT_CLASSES[i]} />
+                {note}
+              </span>
+            ))}
           </div>
         </div>
+        <div className="hero-visual">
+          <span className="blob blob--1" />
+          <span className="blob blob--2" />
+          <PhoneAppUI />
+          <CreditCardUI
+            variant="sol"
+            style={{ position: 'absolute', right: '-6px', bottom: '34px', transform: 'rotate(-9deg)', width: '300px', zIndex: 3 }}
+          />
+        </div>
       </div>
-    </section>
+    </header>
   )
 }

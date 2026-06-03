@@ -25,6 +25,9 @@ export async function POST(req: NextRequest) {
     if (!remittance_provider) {
       return NextResponse.json({ error: 'Remittance provider is required' }, { status: 400 })
     }
+    if (!email?.trim()) {
+      return NextResponse.json({ error: 'Email is required' }, { status: 400 })
+    }
 
     const url = new URL(req.url)
     const utm_source = req.headers.get('referer')

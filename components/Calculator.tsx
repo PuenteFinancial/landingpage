@@ -1,0 +1,101 @@
+'use client'
+
+import { useState } from 'react'
+import { useLanguage } from '@/components/LanguageProvider'
+import { FX_RATE, FX_FEE } from '@/lib/fx'
+
+const mxn = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 })
+const usd = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+const CHIPS = [100, 200, 500, 1000]
+
+export default function Calculator() {
+  const { t } = useLanguage()
+  const [amt, setAmt] = useState<number | ''>(200)
+  const c = t.remit.calc
+
+  const numAmt = Number(amt) || 0
+  const receive = Math.round(numAmt * FX_RATE)
+  const total = numAmt + FX_FEE
+
+  return (
+    <div className="calc">
+      <div className="calc-to">
+        <span className="flagdot"><i /><i /><i /></span>
+        <span>{c.country}</span>
+        <span className="lab">{c.to}</span>
+      </div>
+
+      <div className="calc-amt">
+        <div style={{ flex: 1 }}>
+          <span className="lab">{c.you}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ fontFamily: 'var(--mono)', fontSize: 30, fontWeight: 700 }}>$</span>
+            <input
+              className="calc-input"
+              type="number"
+              inputMode="numeric"
+              min="0"
+              value={amt}
+              onChange={(e) =>
+                setAmt(e.target.value === '' ? '' : Math.max(0, Math.min(50000, Number(e.target.value))))
+              }
+              aria-label={c.you}
+            />
+          </div>
+        </div>
+        <span className="calc-cur">
+          <span className="pip" style={{ background: 'var(--cielo)' }} />
+          USD
+        </span>
+      </div>
+
+      <input
+        className="calc-slider"
+        type="range"
+        min="20"
+        max="2000"
+        step="10"
+        value={Math.min(2000, numAmt)}
+        onChange={(e) => setAmt(Number(e.target.value))}
+        aria-label={c.you}
+      />
+
+      <div className="chips">
+        {CHIPS.map((v) => (
+          <button
+            key={v}
+            className={'chip-amt' + (numAmt === v ? ' is-active' : '')}
+            onClick={() => setAmt(v)}
+          >
+            ${v}
+          </button>
+        ))}
+      </div>
+
+      <div className="calc-rate">
+        <span className="ln" /><span>{c.rate}</span><span className="ln" />
+      </div>
+
+      <div className="calc-amt calc-amt--rcv">
+        <div>
+          <span className="lab">{c.they}</span>
+          <span className="calc-out">${mxn.format(receive)}</span>
+        </div>
+        <span className="calc-cur">
+          <span className="pip" style={{ background: 'var(--mar)' }} />
+          MXN
+        </span>
+      </div>
+
+      <div className="calc-foot">
+        <span>{c.fee} <b>{c.flat}</b></span>
+        <span>{c.total} <b>${usd.format(total)}</b></span>
+      </div>
+      <div className="calc-note">
+        <span className="pip" />{c.note}
+      </div>
+
+      <a className="btn btn--sol" href="#waitlist">{c.cta}</a>
+    </div>
+  )
+}

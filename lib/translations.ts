@@ -1,465 +1,187 @@
 export type Lang = 'en' | 'es'
 
 export type Translations = {
-  nav: {
-    brand: string
-  }
+  announce: { pre: string; link: string }
+  nav: { remit: string; card: string; cta: string }
   hero: {
-    taglineEn: string
-    taglineEs: string
-    headline: string
-    subheadline: string
-    ctaPrimary: string
-    ctaSecondary: string
-    trustBadges: string[]
+    eyebrow: string
+    h1: [string, string][]
+    sub: string
+    cta1: string
+    cta2: string
+    elig: string
+    notes: string[]
   }
-  problem: {
-    headline: string
-    copy: string
-    tableTitle: string
-    tableRows: Array<{ provider: string; fee: string; highlight?: boolean }>
-    note: string
+  remit: {
+    eyebrow: string
+    h2: string
+    sub: string
+    calc: {
+      to: string; country: string
+      you: string; they: string
+      rate: string; fee: string; flat: string
+      total: string; note: string; cta: string
+    }
   }
-  howItWorks: {
-    headline: string
-    steps: Array<{ number: string; title: string; description: string }>
-    skepticHeadline: string
-    skepticCopy: string
+  card: {
+    eyebrow: string
+    h2: [string, string][]
+    sub: string
+    bullets: string[]
+    needTitle: string
+    need: string
+    cta: string
   }
-  creditBuilding: {
-    headline: string
-    copy: string
-    milestones: Array<{ timeframe: string; outcome: string }>
-    comparison: string
-  }
-  employer: {
-    headline: string
-    copy: string
-    partnerNote: string
-  }
-  founder: {
-    headline: string
-    copy: string
-    founderName: string
-    founderTitle: string
-  }
-  faq: {
-    headline: string
-    items: Array<{ q: string; a: string }>
-  }
-  waitlistCTA: {
-    headline: string
-    subheadline: string
-    trustLine: string
-  }
-  form: {
-    firstName: string
-    firstNamePlaceholder: string
-    phone: string
-    phonePlaceholder: string
-    email: string
-    emailPlaceholder: string
-    monthlyAmount: string
-    monthlyAmountOptions: Array<{ value: string; label: string }>
-    destination: string
-    destinationOptions: Array<{ value: string; label: string }>
-    remittanceProvider: string
-    remittanceProviderOptions: Array<{ value: string; label: string }>
+  wl: {
+    eyebrow: string
+    h2: string
+    sub: string
+    points: string[]
+    f: { name: string; phone: string; email: string; country: string; amount: string; provider: string }
+    countries: string[]
+    amounts: string[]
+    providers: string[]
+    ph: { name: string; phone: string; email: string }
+    select: string
     submit: string
-    submitting: string
-    successTitle: string
-    successMessage: string
-    errorMessage: string
-    selectPlaceholder: string
+    fine: string
+    success: {
+      title: string; body: string; refLabel: string
+      copy: string; copied: string; wa: string; waText: string
+    }
   }
-  footer: {
-    tagline: string
-    privacy: string
-    terms: string
-    disclaimer: string
-    copyright: string
-  }
+  footer: { tagline: string; rights: string; note: string }
 }
 
 const en: Translations = {
-  nav: {
-    brand: 'Puente Financial',
-  },
+  announce: { pre: 'Early access is open.', link: 'Join the waitlist' },
+  nav: { remit: 'Remittances', card: 'Card', cta: 'Join waitlist' },
   hero: {
-    taglineEn: 'The money you send home should bring you home.',
-    taglineEs: 'El dinero que mandas a casa, te trae a casa.',
-    headline: 'Send money home free.\nBuild your credit automatically.',
-    subheadline:
-      'The only card that turns your remittances into credit history. Zero fees. Zero catch.',
-    ctaPrimary: 'Join the waitlist',
-    ctaSecondary: 'See how it works',
-    trustBadges: ['FDIC Insured*', 'Visa Network*', 'No SSN Required*', 'No Credit Score Required*'],
+    eyebrow: 'Credit card + remittances',
+    h1: [['Send', 'money.'], ['Build', 'credit.'], ['Earn', 'rewards.']],
+    sub: 'Send money to Mexico at our best price, and earn rewards on everyday spending — all from one card built for you.',
+    cta1: 'Join the waitlist',
+    cta2: 'See how it works',
+    elig: 'No SSN required — start with your passport or government ID.',
+    notes: ['$5 flat fee', 'Real exchange rate', 'Built for newcomers'],
   },
-  problem: {
-    headline: "You're paying to take care of your family.",
-    copy:
-      'The average person sending money home pays $150–$400 a year in fees. Western Union. Remitly. Bank wires. Every transfer costs you. We think that\'s wrong.',
-    tableTitle: 'Cost to send $300 home',
-    tableRows: [
-      { provider: 'Western Union', fee: '$8–$15' },
-      { provider: 'Remitly', fee: '$3–$6' },
-      { provider: 'Bank wire', fee: '$15–$25' },
-      { provider: 'Puente Financial', fee: '$0', highlight: true },
+  remit: {
+    eyebrow: 'Remittances',
+    h2: 'Money home, the moment you tap send.',
+    sub: 'One flat $5 fee. The real exchange rate, with no hidden markup. Try it — see exactly what your family receives.',
+    calc: {
+      to: 'Sending to', country: 'Mexico',
+      you: 'You send', they: 'They receive',
+      rate: '1 USD = 17.20 MXN', fee: 'Fee', flat: '$5.00 flat',
+      total: 'Total to pay', note: 'Real mid-market rate · no markup',
+      cta: 'Join the waitlist',
+    },
+  },
+  card: {
+    eyebrow: 'The card',
+    h2: [['Feels like ', 'debit.'], ['Works like ', 'credit.']],
+    sub: 'A cash-secured card that builds your U.S. credit history while you spend like normal.',
+    bullets: [
+      'Build U.S. credit history — your everyday spending counts toward it.',
+      'Cash-secured: no credit check, and no debt to fall into.',
+      'Earn rewards on the things you buy every day.',
     ],
-    note: 'Average based on published transfer fees as of 2024.',
+    needTitle: "What you'll need",
+    need: 'A passport or government ID and a U.S. address. No SSN required to start.',
+    cta: 'Join the waitlist',
   },
-  howItWorks: {
-    headline: "Here's what makes us different.",
-    steps: [
-      {
-        number: '01',
-        title: 'Send money home',
-        description:
-          'Tap send in the app. $300 arrives to your family in minutes. Fee: zero.*',
-      },
-      {
-        number: '02',
-        title: 'Your credit builds automatically',
-        description:
-          'Every transfer posts as a purchase on your card. Every month you pay, we plan to report to Equifax, Experian, and TransUnion. No extra steps. No separate product.',
-      },
-      {
-        number: '03',
-        title: 'Earn points toward your flight home',
-        description:
-          'Earn rewards on every transfer — redeemable for flights home. Turn the money you were already sending into a path back to your family.',
-      },
-    ],
-    skepticHeadline: 'Why is this different from other cards?',
-    skepticCopy:
-      "Other cards treat remittances as cash advances — fees from day one, no points, no grace period. We're designing our card differently. Your transfers are purchases. That changes everything.",
-  },
-  creditBuilding: {
-    headline: 'Your financial life in America starts here.',
-    copy:
-      "Most credit cards report one thing: whether you paid your bill. We're building a card that reports your entire financial picture. Because 12 years of sending $300 home every month should tell lenders something about who you are.",
-    milestones: [
-      {
-        timeframe: 'Month 6',
-        outcome: 'Your credit score appears or improves*',
-      },
-      {
-        timeframe: 'Year 1',
-        outcome: 'You may qualify for better loan rates*',
-      },
-      {
-        timeframe: 'Year 2–3',
-        outcome: "You're positioned for a car loan or mortgage*",
-      },
-    ],
-    comparison:
-      'No deposit required. No SSN required. Just your paycheck and your history.',
-  },
-  employer: {
-    headline: 'We come to you.',
-    copy:
-      "We plan to partner with employers across Utah to bring this card directly to workers. No ads. No app store. Your HR team introduces us, we show up with lunch, and we help you get started in person. In your language.",
-    partnerNote: 'Employer partnerships launching in Utah. More coming soon.',
-  },
-  founder: {
-    headline: 'Built by people who lived this.',
-    copy:
-      "I'm Venezuelan. My co-founder's family is Mexican. We've watched our communities pay hundreds of dollars a year just to take care of the people they love. We built the card we wish existed. One that treats you like the financially responsible, hardworking person you are — not like a risk to be managed.",
-    founderName: 'Joshua Phelps',
-    founderTitle: 'Co-founder, Puente Financial',
-  },
-  faq: {
-    headline: 'Your questions, answered.',
-    items: [
-      {
-        q: 'Do I need a Social Security Number?',
-        a: 'No. A government-issued ID and proof of US address is what we plan to require to apply.',
-      },
-      {
-        q: 'Do I need a credit score to get approved?',
-        a: "No. We plan to look at your income and banking history, not your credit score.",
-      },
-      {
-        q: "How is this actually free? What's the catch?",
-        a: "No catch. We plan to make money the same way Visa does — a small fee that merchants pay every time you swipe, not you. That's how we cover the cost of your free transfers.",
-      },
-      {
-        q: "What happens if I can't pay my bill?",
-        a: "We plan to only extend credit you can afford. We'll verify your income before approving you and set limits that make sense for your situation. If something changes, call us. We're real people.",
-      },
-      {
-        q: 'Is my money safe?',
-        a: 'We are designing this product to be FDIC insured up to $250,000 and to operate on the Visa network. Final partnerships are pending.',
-      },
-      {
-        q: 'How fast does the money arrive?',
-        a: "Same day in most cases.* We'll always show you the exact arrival time before you confirm.",
-      },
-      {
-        q: 'Does this really build my credit?',
-        a: 'Yes — that is the core design of this product. Every month you pay your bill, we plan to report to Equifax, Experian, and TransUnion. Most members should see their score appear or improve within 6 months.*',
-      },
-    ],
-  },
-  waitlistCTA: {
-    headline: "You've been paying too much for too long.",
-    subheadline: "Join the waitlist. Be first when we launch.",
-    trustLine: 'No credit card required. No commitment. Just your spot in line.',
-  },
-  form: {
-    firstName: 'First name',
-    firstNamePlaceholder: 'Maria',
-    phone: 'Phone number / WhatsApp',
-    phonePlaceholder: '+1 (801) 555-0123',
-    email: 'Email address (optional)',
-    emailPlaceholder: 'maria@email.com',
-    monthlyAmount: 'How much do you send home per month?',
-    monthlyAmountOptions: [
-      { value: '', label: 'Select an amount' },
-      { value: 'under_100', label: 'Under $100' },
-      { value: '100_300', label: '$100–$300' },
-      { value: '300_500', label: '$300–$500' },
-      { value: 'over_500', label: 'Over $500' },
-    ],
-    destination: 'Where do you send?',
-    destinationOptions: [
-      { value: '', label: 'Select a country' },
-      { value: 'mexico', label: 'Mexico' },
-      { value: 'philippines', label: 'Philippines' },
-      { value: 'guatemala', label: 'Guatemala' },
-      { value: 'el_salvador', label: 'El Salvador' },
-      { value: 'honduras', label: 'Honduras' },
-      { value: 'dominican_republic', label: 'Dominican Republic' },
-      { value: 'colombia', label: 'Colombia' },
-      { value: 'ecuador', label: 'Ecuador' },
-      { value: 'peru', label: 'Peru' },
-      { value: 'venezuela', label: 'Venezuela' },
-      { value: 'india', label: 'India' },
-      { value: 'nigeria', label: 'Nigeria' },
-      { value: 'vietnam', label: 'Vietnam' },
-      { value: 'other', label: 'Other' },
-    ],
-    remittanceProvider: 'What do you currently use to send money?',
-    remittanceProviderOptions: [
-      { value: '', label: 'Select a provider' },
-      { value: 'western_union', label: 'Western Union' },
-      { value: 'remitly', label: 'Remitly' },
-      { value: 'moneygram', label: 'MoneyGram' },
-      { value: 'wise', label: 'Wise' },
-      { value: 'xoom', label: 'PayPal / Xoom' },
-      { value: 'zelle', label: 'Zelle' },
-      { value: 'cash_app', label: 'Cash App' },
-      { value: 'bank_wire', label: 'Bank wire' },
-      { value: 'cash', label: 'Cash / in person' },
-      { value: 'other', label: 'Other' },
-    ],
-    submit: 'Join the waitlist — it\'s free',
-    submitting: 'Joining...',
-    successTitle: "You're on the list.",
-    successMessage:
-      "We'll reach out the moment we launch. Tell your friends — the more people who join, the faster we get there.",
-    errorMessage:
-      'Something went wrong. Please try again or message us on WhatsApp.',
-    selectPlaceholder: 'Select...',
+  wl: {
+    eyebrow: 'Waitlist',
+    h2: 'Be first in line.',
+    sub: "Join the waitlist and we'll reach out the moment Puente is ready for you. No spam, ever.",
+    points: ['A spot the day we launch', 'Founding-member perks', 'Help shape the product'],
+    f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send each month?', provider: 'Current remittance provider' },
+    countries: ['Mexico', 'Other'],
+    amounts: ['Less than $200', '$200–$500', '$500–$1,000', 'More than $1,000', "I don't send yet"],
+    providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Bank transfer', "I don't send yet", 'Other'],
+    ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'you@email.com' },
+    select: 'Select…',
+    submit: 'Join the waitlist',
+    fine: 'Puente is in early validation and not yet available. Joining adds you to the early-access list.',
+    success: {
+      title: "You're on the list!",
+      body: "We'll reach out the moment Puente is ready. Want to move up the line?",
+      refLabel: 'Share your invite link and skip ahead',
+      copy: 'Copy', copied: 'Copied!',
+      wa: 'Share on WhatsApp',
+      waText: 'I just joined the Puente waitlist — send money home for a $5 flat fee and build credit. Join me:',
+    },
   },
   footer: {
-    tagline: 'The money you send home should bring you home.',
-    privacy: 'Privacy Policy',
-    terms: 'Terms of Use',
-    disclaimer:
-      'Puente Financial is a financial product currently in development. Joining this waitlist does not constitute an application for credit or financial services. All features, rates, timelines, and terms described on this page are intended and subject to change. Credit products will be subject to eligibility requirements and approval. FDIC insurance and Visa network partnership are planned and pending final agreements. Points estimates are illustrative only.',
-    copyright: '© 2025 Puente Financial. All rights reserved.',
+    tagline: 'Send money. Build credit. Earn rewards. One card, built for our community.',
+    rights: '© 2026 Puente Financial, Inc.',
+    note: 'Concept in validation — not yet available.',
   },
 }
 
 const es: Translations = {
-  nav: {
-    brand: 'Puente Financial',
-  },
+  announce: { pre: 'El acceso anticipado ya está abierto.', link: 'Únete a la lista' },
+  nav: { remit: 'Remesas', card: 'Tarjeta', cta: 'Unirme a la lista' },
   hero: {
-    taglineEn: 'The money you send home should bring you home.',
-    taglineEs: 'El dinero que mandas a casa, te trae a casa.',
-    headline: 'Envía dinero a casa gratis.\nConstruye tu crédito automáticamente.',
-    subheadline:
-      'La única tarjeta que convierte tus remesas en historial crediticio. Sin comisiones. Sin trampas.',
-    ctaPrimary: 'Únete a la lista',
-    ctaSecondary: 'Cómo funciona',
-    trustBadges: ['Seguro FDIC*', 'Red Visa*', 'Sin SSN*', 'Sin puntaje crediticio*'],
+    eyebrow: 'Tarjeta de crédito + Remesas',
+    h1: [['Envía', 'dinero.'], ['Crea', 'crédito.'], ['Gana', 'recompensas.']],
+    sub: 'Envía dinero a México al mejor precio y gana recompensas en tus compras diarias — todo con una tarjeta hecha para ti.',
+    cta1: 'Unirme a la lista',
+    cta2: 'Mira cómo funciona',
+    elig: 'Sin SSN — empieza con tu pasaporte o identificación oficial.',
+    notes: ['Tarifa fija de $5', 'Tipo de cambio real', 'Hecha para ti'],
   },
-  problem: {
-    headline: 'Estás pagando por cuidar a tu familia.',
-    copy:
-      'En promedio, quien envía dinero a casa paga entre $150 y $400 al año en comisiones. Western Union. Remitly. Transferencias bancarias. Cada envío te cuesta. Creemos que eso está mal.',
-    tableTitle: 'Costo de enviar $300 a casa',
-    tableRows: [
-      { provider: 'Western Union', fee: '$8–$15' },
-      { provider: 'Remitly', fee: '$3–$6' },
-      { provider: 'Transferencia bancaria', fee: '$15–$25' },
-      { provider: 'Puente Financial', fee: '$0', highlight: true },
+  remit: {
+    eyebrow: 'Remesas',
+    h2: 'Dinero a casa, en el momento en que tocas enviar.',
+    sub: 'Una tarifa fija de $5. El tipo de cambio real, sin sobreprecio. Pruébalo — mira exactamente cuánto recibe tu familia.',
+    calc: {
+      to: 'Enviar a', country: 'México',
+      you: 'Tú envías', they: 'Ellos reciben',
+      rate: '1 USD = 17.20 MXN', fee: 'Tarifa', flat: '$5.00 fija',
+      total: 'Total a pagar', note: 'Tipo de cambio real · sin sobreprecio',
+      cta: 'Unirme a la lista',
+    },
+  },
+  card: {
+    eyebrow: 'La tarjeta',
+    h2: [['Se siente como ', 'débito.'], ['Funciona como ', 'crédito.']],
+    sub: 'Una tarjeta asegurada con efectivo que crea tu historial de crédito en EE. UU. mientras gastas como siempre.',
+    bullets: [
+      'Crea historial de crédito en EE. UU. — tus compras diarias cuentan.',
+      'Asegurada con efectivo: sin revisión de crédito y sin deudas.',
+      'Gana recompensas en lo que compras todos los días.',
     ],
-    note: 'Promedio basado en tarifas publicadas al 2024.',
+    needTitle: 'Lo que necesitas',
+    need: 'Un pasaporte o identificación oficial y una dirección en EE. UU. Sin SSN para empezar.',
+    cta: 'Unirme a la lista',
   },
-  howItWorks: {
-    headline: 'Esto es lo que nos hace diferentes.',
-    steps: [
-      {
-        number: '01',
-        title: 'Envía dinero a casa',
-        description:
-          'Toca enviar en la app. $300 llegan a tu familia en minutos. Comisión: cero.*',
-      },
-      {
-        number: '02',
-        title: 'Tu crédito se construye solo',
-        description:
-          'Cada envío se registra como una compra en tu tarjeta. Cada mes que pagas, planeamos reportar a Equifax, Experian y TransUnion. Sin pasos extra. Sin producto separado.',
-      },
-      {
-        number: '03',
-        title: 'Gana puntos para tu vuelo a casa',
-        description:
-          'Gana recompensas en cada envío — canjeables por vuelos a casa. Convierte el dinero que ya ibas a mandar en una forma de regresar con tu familia.',
-      },
-    ],
-    skepticHeadline: '¿Por qué es diferente a otras tarjetas?',
-    skepticCopy:
-      'Otras tarjetas tratan las remesas como adelantos de efectivo — comisiones desde el primer día, sin puntos, sin período de gracia. Estamos diseñando nuestra tarjeta diferente. Tus envíos son compras. Eso cambia todo.',
-  },
-  creditBuilding: {
-    headline: 'Tu vida financiera en América empieza aquí.',
-    copy:
-      'La mayoría de tarjetas reporta una sola cosa: si pagaste tu factura. Estamos construyendo una tarjeta que reporta tu panorama financiero completo. Porque 12 años enviando $300 a casa cada mes debería decirles algo a los prestamistas sobre quién eres.',
-    milestones: [
-      {
-        timeframe: 'Mes 6',
-        outcome: 'Tu puntaje crediticio aparece o mejora*',
-      },
-      {
-        timeframe: 'Año 1',
-        outcome: 'Podrías calificar para mejores tasas de préstamo*',
-      },
-      {
-        timeframe: 'Años 2–3',
-        outcome: 'Estás posicionado para un préstamo de auto o hipoteca*',
-      },
-    ],
-    comparison:
-      'Sin depósito. Sin SSN. Solo tu sueldo y tu historial.',
-  },
-  employer: {
-    headline: 'Nosotros vamos a ti.',
-    copy:
-      'Planeamos asociarnos con empleadores en Utah para llevar esta tarjeta directamente a los trabajadores. Sin anuncios. Sin descargas. Tu equipo de recursos humanos nos presenta, llegamos con almuerzo y te ayudamos a comenzar en persona. En tu idioma.',
-    partnerNote: 'Alianzas con empleadores lanzando en Utah. Más próximamente.',
-  },
-  founder: {
-    headline: 'Construido por personas que lo vivieron.',
-    copy:
-      'Soy venezolano. La familia de mi cofundador es mexicana. Hemos visto a nuestras comunidades pagar cientos de dólares al año solo por cuidar a las personas que aman. Construimos la tarjeta que hubiéramos querido tener. Una que te trata como la persona responsable y trabajadora que eres — no como un riesgo a gestionar.',
-    founderName: 'Joshua Phelps',
-    founderTitle: 'Cofundador, Puente Financial',
-  },
-  faq: {
-    headline: 'Tus preguntas, respondidas.',
-    items: [
-      {
-        q: '¿Necesito número de Seguro Social?',
-        a: 'No. Planeamos requerir solo una identificación oficial y comprobante de domicilio en EE.UU.',
-      },
-      {
-        q: '¿Necesito puntaje crediticio para ser aprobado?',
-        a: 'No. Planeamos revisar tus ingresos e historial bancario, no tu puntaje.',
-      },
-      {
-        q: '¿Cómo es gratis? ¿Cuál es la trampa?',
-        a: 'No hay trampa. Planeamos ganar dinero igual que Visa — una pequeña comisión que pagan los comercios cada vez que usas tu tarjeta, no tú. Así cubrimos el costo de tus envíos gratis.',
-      },
-      {
-        q: '¿Qué pasa si no puedo pagar mi factura?',
-        a: 'Planeamos solo otorgar crédito que puedas pagar. Verificaremos tus ingresos antes de aprobarte y estableceremos límites que tengan sentido para tu situación. Si algo cambia, llámanos. Somos personas reales.',
-      },
-      {
-        q: '¿Mi dinero está seguro?',
-        a: 'Estamos diseñando este producto para estar asegurado por la FDIC hasta $250,000 y operar en la red Visa. Las asociaciones finales están pendientes.',
-      },
-      {
-        q: '¿Qué tan rápido llega el dinero?',
-        a: 'El mismo día en la mayoría de los casos.* Siempre te mostraremos el tiempo exacto de llegada antes de confirmar.',
-      },
-      {
-        q: '¿Realmente construye mi crédito?',
-        a: 'Sí — ese es el diseño central de este producto. Cada mes que pagas tu factura, planeamos reportar a Equifax, Experian y TransUnion. La mayoría de miembros debería ver aparecer o mejorar su puntaje en 6 meses.*',
-      },
-    ],
-  },
-  waitlistCTA: {
-    headline: 'Llevas demasiado tiempo pagando de más.',
-    subheadline: 'Únete a la lista. Sé el primero cuando lancemos.',
-    trustLine: 'Sin tarjeta de crédito. Sin compromiso. Solo tu lugar en la fila.',
-  },
-  form: {
-    firstName: 'Nombre',
-    firstNamePlaceholder: 'María',
-    phone: 'Número de teléfono / WhatsApp',
-    phonePlaceholder: '+1 (801) 555-0123',
-    email: 'Correo electrónico (opcional)',
-    emailPlaceholder: 'maria@correo.com',
-    monthlyAmount: '¿Cuánto envías a casa por mes?',
-    monthlyAmountOptions: [
-      { value: '', label: 'Selecciona un monto' },
-      { value: 'under_100', label: 'Menos de $100' },
-      { value: '100_300', label: '$100–$300' },
-      { value: '300_500', label: '$300–$500' },
-      { value: 'over_500', label: 'Más de $500' },
-    ],
-    destination: '¿A dónde envías?',
-    destinationOptions: [
-      { value: '', label: 'Selecciona un país' },
-      { value: 'mexico', label: 'México' },
-      { value: 'philippines', label: 'Filipinas' },
-      { value: 'guatemala', label: 'Guatemala' },
-      { value: 'el_salvador', label: 'El Salvador' },
-      { value: 'honduras', label: 'Honduras' },
-      { value: 'dominican_republic', label: 'República Dominicana' },
-      { value: 'colombia', label: 'Colombia' },
-      { value: 'ecuador', label: 'Ecuador' },
-      { value: 'peru', label: 'Perú' },
-      { value: 'venezuela', label: 'Venezuela' },
-      { value: 'india', label: 'India' },
-      { value: 'nigeria', label: 'Nigeria' },
-      { value: 'vietnam', label: 'Vietnam' },
-      { value: 'other', label: 'Otro' },
-    ],
-    remittanceProvider: '¿Qué usas actualmente para enviar dinero?',
-    remittanceProviderOptions: [
-      { value: '', label: 'Selecciona un proveedor' },
-      { value: 'western_union', label: 'Western Union' },
-      { value: 'remitly', label: 'Remitly' },
-      { value: 'moneygram', label: 'MoneyGram' },
-      { value: 'wise', label: 'Wise' },
-      { value: 'xoom', label: 'PayPal / Xoom' },
-      { value: 'zelle', label: 'Zelle' },
-      { value: 'cash_app', label: 'Cash App' },
-      { value: 'bank_wire', label: 'Transferencia bancaria' },
-      { value: 'cash', label: 'Efectivo / en persona' },
-      { value: 'other', label: 'Otro' },
-    ],
-    submit: 'Únete a la lista — es gratis',
-    submitting: 'Uniéndote...',
-    successTitle: 'Ya estás en la lista.',
-    successMessage:
-      'Te avisaremos en el momento que lancemos. Díselo a tus amigos — entre más personas se unan, más rápido llegamos.',
-    errorMessage:
-      'Algo salió mal. Por favor intenta de nuevo o escríbenos por WhatsApp.',
-    selectPlaceholder: 'Seleccionar...',
+  wl: {
+    eyebrow: 'Lista de espera',
+    h2: 'Sé el primero en la fila.',
+    sub: 'Únete a la lista y te avisaremos en cuanto Puente esté listo para ti. Sin spam, nunca.',
+    points: ['Un lugar el día del lanzamiento', 'Beneficios de miembro fundador', 'Ayuda a dar forma al producto'],
+    f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías cada mes?', provider: 'Proveedor de remesas actual' },
+    countries: ['México', 'Otro'],
+    amounts: ['Menos de $200', '$200–$500', '$500–$1,000', 'Más de $1,000', 'Aún no envío'],
+    providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Transferencia bancaria', 'Aún no envío', 'Otro'],
+    ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'tu@correo.com' },
+    select: 'Selecciona…',
+    submit: 'Unirme a la lista',
+    fine: 'Puente está en validación temprana y aún no está disponible. Al unirte entras a la lista de acceso anticipado.',
+    success: {
+      title: '¡Estás en la lista!',
+      body: 'Te avisaremos en cuanto Puente esté listo. ¿Quieres adelantarte en la fila?',
+      refLabel: 'Comparte tu enlace de invitación y avanza',
+      copy: 'Copiar', copied: '¡Copiado!',
+      wa: 'Compartir por WhatsApp',
+      waText: 'Me uní a la lista de Puente — envía dinero a casa con tarifa fija de $5 y crea crédito. Únete:',
+    },
   },
   footer: {
-    tagline: 'El dinero que mandas a casa, te trae a casa.',
-    privacy: 'Política de privacidad',
-    terms: 'Términos de uso',
-    disclaimer:
-      'Puente Financial es un producto financiero actualmente en desarrollo. Unirse a esta lista de espera no constituye una solicitud de crédito ni servicios financieros. Todas las características, tasas, plazos y términos descritos en esta página son intencionales y están sujetos a cambios. Los productos de crédito estarán sujetos a requisitos de elegibilidad y aprobación. El seguro FDIC y la asociación con la red Visa están planificados y pendientes de acuerdos finales. Las estimaciones de puntos son únicamente ilustrativas.',
-    copyright: '© 2025 Puente Financial. Todos los derechos reservados.',
+    tagline: 'Envía dinero. Crea crédito. Gana recompensas. Una tarjeta, hecha para nuestra comunidad.',
+    rights: '© 2026 Puente Financial, Inc.',
+    note: 'Concepto en validación — aún no disponible.',
   },
 }
 
