@@ -37,7 +37,8 @@ export type Translations = {
     h2: string
     sub: string
     points: string[]
-    f: { name: string; phone: string; email: string; country: string; amount: string; provider: string }
+    f: { name: string; phone: string; email: string; country: string; amount: string; provider: string; knowsScore: string; scoreRange: string }
+    scoreOptions: string[]
     amounts: string[]
     providers: string[]
     ph: { name: string; phone: string; email: string }
@@ -94,7 +95,8 @@ const en: Translations = {
     h2: 'Be first in line.',
     sub: "Join the waitlist and we'll reach out the moment Puente is ready for you. No spam, ever.",
     points: ['A spot the day we launch', 'Founding-member perks', 'Help shape the product'],
-    f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send each month?', provider: 'Current remittance provider' },
+    f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send each month?', provider: 'Current remittance provider', knowsScore: 'Do you know your US credit score?', scoreRange: 'What is your credit score range?' },
+    scoreOptions: ['Below 580', '580–669', '670–739', '740–799', '800+'],
     amounts: ['Less than $200', '$200–$500', '$500–$1,000', 'More than $1,000', "I don't send yet"],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Bank transfer', "I don't send yet", 'Other'],
     ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'you@email.com' },
@@ -159,7 +161,8 @@ const es: Translations = {
     h2: 'Sé el primero en la fila.',
     sub: 'Únete a la lista y te avisaremos en cuanto Puente esté listo para ti. Sin spam, nunca.',
     points: ['Un lugar el día del lanzamiento', 'Beneficios de miembro fundador', 'Ayuda a dar forma al producto'],
-    f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías cada mes?', provider: 'Proveedor de remesas actual' },
+    f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías cada mes?', provider: 'Proveedor de remesas actual', knowsScore: '¿Conoces tu puntaje de crédito en EE. UU.?', scoreRange: '¿Cuál es tu rango de puntaje?' },
+    scoreOptions: ['Below 580', '580–669', '670–739', '740–799', '800+'],
     amounts: ['Menos de $200', '$200–$500', '$500–$1,000', 'Más de $1,000', 'Aún no envío'],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Transferencia bancaria', 'Aún no envío', 'Otro'],
     ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'tu@correo.com' },

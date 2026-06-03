@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
-    const { first_name, phone, email, monthly_send_amount, destination_country, remittance_provider, lang } = body
+    const { first_name, phone, email, monthly_send_amount, destination_country, remittance_provider, knows_credit_score, credit_score_range, lang } = body
 
     if (!first_name?.trim()) {
       return NextResponse.json({ error: 'First name is required' }, { status: 400 })
@@ -42,6 +42,8 @@ export async function POST(req: NextRequest) {
       monthly_send_amount,
       destination_country,
       remittance_provider,
+      knows_credit_score: knows_credit_score || null,
+      credit_score_range: credit_score_range || null,
       language_preference: lang || 'en',
       utm_source: url.searchParams.get('utm_source') ?? utm_source,
       utm_medium: url.searchParams.get('utm_medium'),

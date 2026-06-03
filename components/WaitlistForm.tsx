@@ -17,6 +17,8 @@ export default function WaitlistForm() {
   const [country, setCountry] = useState('')
   const [amount, setAmount] = useState('')
   const [provider, setProvider] = useState('')
+  const [knowsScore, setKnowsScore] = useState('')
+  const [scoreRange, setScoreRange] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [copied, setCopied] = useState(false)
 
@@ -52,6 +54,8 @@ export default function WaitlistForm() {
           monthly_send_amount: amount,
           destination_country: country,
           remittance_provider: provider,
+          knows_credit_score: knowsScore || null,
+          credit_score_range: scoreRange || null,
           lang,
         }),
       })
@@ -185,6 +189,31 @@ export default function WaitlistForm() {
             {s.providers.map((o) => <option key={o} value={o}>{o}</option>)}
           </select>
         </div>
+        <div className="field">
+          <label>{s.f.knowsScore}</label>
+          <select
+            value={knowsScore}
+            onChange={(e) => { setKnowsScore(e.target.value); if (e.target.value !== 'yes') setScoreRange('') }}
+            disabled={status === 'loading'}
+          >
+            <option value="" disabled>{s.select}</option>
+            <option value="yes">{lang === 'es' ? 'Sí' : 'Yes'}</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        {knowsScore === 'yes' && (
+          <div className="field">
+            <label>{s.f.scoreRange}</label>
+            <select
+              value={scoreRange}
+              onChange={(e) => setScoreRange(e.target.value)}
+              disabled={status === 'loading'}
+            >
+              <option value="" disabled>{s.select}</option>
+              {s.scoreOptions.map((o) => <option key={o} value={o}>{o}</option>)}
+            </select>
+          </div>
+        )}
         <button className="btn btn--sol" type="submit" disabled={status === 'loading'}>
           {status === 'loading' ? '…' : s.submit}
         </button>
