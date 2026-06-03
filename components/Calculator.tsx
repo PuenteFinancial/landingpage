@@ -3,33 +3,55 @@
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/components/LanguageProvider'
 import { FX_RATE, FX_FEE } from '@/lib/fx'
+import { COUNTRIES } from '@/lib/countries'
 
-const mxn = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 })
+const CALC_COUNTRIES = COUNTRIES.filter((c) => c.inCalc)
+const fmtInt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 })
 const usd = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const CHIPS = [100, 200, 500, 1000]
 
 export default function Calculator() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const [amt, setAmt] = useState<number | ''>(200)
   const [rate, setRate] = useState(FX_RATE)
+  const [country, setCountry] = useState(CALC_COUNTRIES[0])
   const c = t.remit.calc
 
   useEffect(() => {
-    fetch('/api/fx-rate')
+    fetch(`/api/fx-rate?target=${country.currency}`)
       .then((r) => r.json())
       .then((d) => { if (typeof d.rate === 'number') setRate(d.rate) })
       .catch(() => {})
-  }, [])
+  }, [country])
 
   const numAmt = Number(amt) || 0
   const receive = Math.round(numAmt * rate)
   const total = numAmt + FX_FEE
+  const [c1, c2, c3] = country.flagColors ?? ['var(--cielo)', '#fff', 'var(--mar)']
 
   return (
     <div className="calc">
       <div className="calc-to">
-        <span className="flagdot"><i /><i /><i /></span>
-        <span>{c.country}</span>
+        <span className="flagdot">
+          <i style={{ background: c1 }} />
+          <i style={{ background: c2 }} />
+          <i style={{ background: c3 }} />
+        </span>
+        <select
+          className="calc-country-select"
+          value={country.name.en}
+          onChange={(e) => {
+            const found = CALC_COUNTRIES.find((co) => co.name.en === e.target.value)
+            if (found) { setCountry(found); setRate(FX_RATE) }
+          }}
+          aria-label={c.to}
+        >
+          {CALC_COUNTRIES.map((co) => (
+            <option key={co.name.en} value={co.name.en}>
+              {lang === 'es' ? co.name.es : co.name.en}
+            </option>
+          ))}
+        </select>
         <span className="lab">{c.to}</span>
       </div>
 
@@ -82,18 +104,18 @@ export default function Calculator() {
 
       <div className="calc-rate">
         <span className="ln" />
-        <span>1 USD = {rate.toFixed(2)} MXN</span>
+        <span>1 USD = {rate.toFixed(2)} {country.currency}</span>
         <span className="ln" />
       </div>
 
       <div className="calc-amt calc-amt--rcv">
         <div>
           <span className="lab">{c.they}</span>
-          <span className="calc-out">${mxn.format(receive)}</span>
+          <span className="calc-out">{fmtInt.format(receive)}</span>
         </div>
         <span className="calc-cur">
           <span className="pip" style={{ background: 'var(--mar)' }} />
-          MXN
+          {country.currency}
         </span>
       </div>
 

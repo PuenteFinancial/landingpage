@@ -310,6 +310,7 @@ html{scroll-behavior:smooth;}
 .wl-share{display:flex; gap:10px; margin-top:11px;}
 .wl-wa{flex:1; justify-content:center; background:#25D366; color:#06351c;}
 .wl-wa:hover{background:#1fc35c;}
+.calc-country-select{background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='%23637a76'/%3E%3C/svg%3E") no-repeat right 2px center; border:none; color:inherit; font-family:var(--font); font-weight:700; font-size:inherit; cursor:pointer; padding-right:18px; appearance:none; -webkit-appearance:none; outline:none; min-width:0;}
 
 @media (max-width:900px){
   .hero-inner,.feature,.hub-grid{grid-template-columns:1fr;}

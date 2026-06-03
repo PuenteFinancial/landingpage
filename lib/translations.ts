@@ -17,7 +17,7 @@ export type Translations = {
     h2: string
     sub: string
     calc: {
-      to: string; country: string
+      to: string
       you: string; they: string
       rate: string; fee: string; flat: string
       total: string; note: string; cta: string
@@ -38,7 +38,6 @@ export type Translations = {
     sub: string
     points: string[]
     f: { name: string; phone: string; email: string; country: string; amount: string; provider: string }
-    countries: string[]
     amounts: string[]
     providers: string[]
     ph: { name: string; phone: string; email: string }
@@ -70,7 +69,7 @@ const en: Translations = {
     h2: 'Money home, the moment you tap send.',
     sub: 'One flat $5 fee. The real exchange rate, with no hidden markup. Try it — see exactly what your family receives.',
     calc: {
-      to: 'Sending to', country: 'Mexico',
+      to: 'Sending to',
       you: 'You send', they: 'They receive',
       rate: '1 USD = 17.20 MXN', fee: 'Fee', flat: '$5.00 flat',
       total: 'Total to pay', note: 'Real mid-market rate · no markup',
@@ -96,7 +95,6 @@ const en: Translations = {
     sub: "Join the waitlist and we'll reach out the moment Puente is ready for you. No spam, ever.",
     points: ['A spot the day we launch', 'Founding-member perks', 'Help shape the product'],
     f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send each month?', provider: 'Current remittance provider' },
-    countries: ['Mexico', 'Other'],
     amounts: ['Less than $200', '$200–$500', '$500–$1,000', 'More than $1,000', "I don't send yet"],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Bank transfer', "I don't send yet", 'Other'],
     ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'you@email.com' },
@@ -136,7 +134,7 @@ const es: Translations = {
     h2: 'Dinero a casa, en el momento en que tocas enviar.',
     sub: 'Una tarifa fija de $5. El tipo de cambio real, sin sobreprecio. Pruébalo — mira exactamente cuánto recibe tu familia.',
     calc: {
-      to: 'Enviar a', country: 'México',
+      to: 'Enviar a',
       you: 'Tú envías', they: 'Ellos reciben',
       rate: '1 USD = 17.20 MXN', fee: 'Tarifa', flat: '$5.00 fija',
       total: 'Total a pagar', note: 'Tipo de cambio real · sin sobreprecio',
@@ -162,7 +160,6 @@ const es: Translations = {
     sub: 'Únete a la lista y te avisaremos en cuanto Puente esté listo para ti. Sin spam, nunca.',
     points: ['Un lugar el día del lanzamiento', 'Beneficios de miembro fundador', 'Ayuda a dar forma al producto'],
     f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías cada mes?', provider: 'Proveedor de remesas actual' },
-    countries: ['México', 'Otro'],
     amounts: ['Menos de $200', '$200–$500', '$500–$1,000', 'Más de $1,000', 'Aún no envío'],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Transferencia bancaria', 'Aún no envío', 'Otro'],
     ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'tu@correo.com' },

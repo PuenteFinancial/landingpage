@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useLanguage } from '@/components/LanguageProvider'
+import { COUNTRIES } from '@/lib/countries'
 import posthog from 'posthog-js'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
@@ -152,7 +153,11 @@ export default function WaitlistForm() {
               disabled={status === 'loading'}
             >
               <option value="" disabled>{s.select}</option>
-              {s.countries.map((o) => <option key={o} value={o}>{o}</option>)}
+              {COUNTRIES.map((c) => (
+                <option key={c.name.en} value={c.name.en}>
+                  {lang === 'es' ? c.name.es : c.name.en}
+                </option>
+              ))}
             </select>
           </div>
           <div className="field">
