@@ -33,7 +33,7 @@ export default function CardSection() {
               ))}
             </ul>
             <div style={{ marginTop: 6 }}>
-              <a className="btn btn--sol" href="#waitlist">{t.card.cta}</a>
+              <a className="btn btn--sol" href="/signup">{t.card.cta}</a>
             </div>
           </div>
         </div>

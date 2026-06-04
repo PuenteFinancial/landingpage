@@ -127,7 +127,7 @@ export default function Calculator() {
         <span className="pip" />{c.note}
       </div>
 
-      <a className="btn btn--sol" href="#waitlist">{c.cta}</a>
+      <a className="btn btn--sol" href="/signup">{c.cta}</a>
     </div>
   )
 }

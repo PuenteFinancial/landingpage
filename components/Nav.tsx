@@ -19,7 +19,7 @@ export default function Nav() {
         </div>
         <div className="nav-right">
           <LanguageToggle />
-          <a className="btn btn--sol btn--sm" href="#waitlist">{t.nav.cta}</a>
+          <a className="btn btn--sol btn--sm" href="/signup">{t.nav.cta}</a>
         </div>
       </div>
     </nav>

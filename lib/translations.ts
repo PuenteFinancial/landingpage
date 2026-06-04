@@ -49,6 +49,9 @@ export type Translations = {
       title: string; body: string; refLabel: string
       copy: string; copied: string; wa: string; waText: string
     }
+    steps: { h: string }[]
+    next: string
+    back: string
   }
   footer: { tagline: string; rights: string; note: string }
 }
@@ -111,6 +114,13 @@ const en: Translations = {
       wa: 'Share on WhatsApp',
       waText: 'I just joined the Puente waitlist — send money home for a $5 flat fee and build credit. Join me:',
     },
+    steps: [
+      { h: 'Tell us about yourself' },
+      { h: 'About your remittances' },
+      { h: 'Your credit picture' },
+    ],
+    next: 'Next',
+    back: 'Back',
   },
   footer: {
     tagline: 'Send money. Build credit. Earn rewards. One card, built for our community.',
@@ -177,6 +187,13 @@ const es: Translations = {
       wa: 'Compartir por WhatsApp',
       waText: 'Me uní a la lista de Puente — envía dinero a casa con tarifa fija de $5 y crea crédito. Únete:',
     },
+    steps: [
+      { h: 'Cuéntanos sobre ti' },
+      { h: 'Sobre tus remesas' },
+      { h: 'Tu historial de crédito' },
+    ],
+    next: 'Siguiente',
+    back: 'Atrás',
   },
   footer: {
     tagline: 'Envía dinero. Crea crédito. Gana recompensas. Una tarjeta, hecha para nuestra comunidad.',

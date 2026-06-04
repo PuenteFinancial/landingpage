@@ -18,7 +18,7 @@ export default function Footer() {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start' }}>
           <LanguageToggle />
-          <a className="btn btn--sol btn--sm" href="#waitlist">{t.nav.cta}</a>
+          <a className="btn btn--sol btn--sm" href="/signup">{t.nav.cta}</a>
         </div>
       </div>
       <div className="footer-bottom">
