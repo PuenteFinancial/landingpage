@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>{t.footer.rights} · {t.footer.note}</span>
+        <span>{t.footer.rights}</span>
         <span>{lang === 'es' ? 'Español' : 'English'}</span>
       </div>
     </footer>

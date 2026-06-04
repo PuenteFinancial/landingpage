@@ -58,12 +58,12 @@ const en: Translations = {
   nav: { remit: 'Remittances', card: 'Card', cta: 'Sign up' },
   hero: {
     eyebrow: 'Credit card + remittances',
-    h1: [['Send', 'money.'], ['Build', 'credit.'], ['Earn', 'rewards.']],
+    h1: [['Send money ', 'home.'], ['Build credit ', 'doing it.']],
     sub: "Every remittance you send through Puente counts toward your U.S. credit history. Most cards don't do that. Ours does.",
     cta1: 'Sign up',
     cta2: 'See how it works',
     elig: 'No SSN required — start with your passport or government ID.',
-    notes: ['$5 flat fee', 'Real exchange rate', 'Built for newcomers'],
+    notes: ['$5 flat fee', 'Real exchange rate'],
   },
   remit: {
     eyebrow: 'Remittances',
@@ -82,7 +82,7 @@ const en: Translations = {
     h2: [['Feels like ', 'debit.'], ['Works like ', 'credit.']],
     sub: 'Every transfer you send through Puente builds your credit history in the US. Your responsibility to your family becomes a tool to build a better future.',
     bullets: [
-      'Build U.S. credit history — your everyday spending counts toward it.',
+      'Build U.S. credit history — your remittances count toward it, not just everyday spending.',
       'Cash-secured: no credit check, and no debt to fall into.',
       'Earn rewards on the things you buy every day.',
     ],
@@ -92,7 +92,7 @@ const en: Translations = {
   },
   wl: {
     eyebrow: 'Waitlist',
-    h2: 'Join Today',
+    h2: 'Sign Up Today',
     sub: 'Sign up and start turning your remittances into a stronger financial future in the US.',
     points: ['A spot the day we launch', 'Founding-member perks', 'Help shape the product'],
     f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send each month?', provider: 'Current remittance provider', knowsScore: 'Do you know your US credit score?', scoreRange: 'What is your credit score range?' },
@@ -124,12 +124,12 @@ const es: Translations = {
   nav: { remit: 'Remesas', card: 'Tarjeta', cta: 'Regístrate' },
   hero: {
     eyebrow: 'Tarjeta de crédito + Remesas',
-    h1: [['Envía', 'dinero.'], ['Crea', 'crédito.'], ['Gana', 'recompensas.']],
+    h1: [['Envía dinero ', 'a casa.'], ['Crea crédito ', 'al hacerlo.']],
     sub: 'Cada remesa que envías a través de Puente cuenta para tu historial crediticio en EE. UU. La mayoría de las tarjetas no hacen eso. La nuestra sí.',
     cta1: 'Regístrate',
     cta2: 'Mira cómo funciona',
     elig: 'Sin SSN — empieza con tu pasaporte o identificación oficial.',
-    notes: ['Tarifa fija de $5', 'Tipo de cambio real', 'Hecha para ti'],
+    notes: ['Tarifa fija de $5', 'Tipo de cambio real'],
   },
   remit: {
     eyebrow: 'Remesas',
@@ -148,7 +148,7 @@ const es: Translations = {
     h2: [['Se siente como ', 'débito.'], ['Funciona como ', 'crédito.']],
     sub: 'Cada transferencia que envías a través de Puente construye tu historial crediticio en EE. UU. Tu responsabilidad con tu familia se convierte en una herramienta para construir un mejor futuro.',
     bullets: [
-      'Crea historial de crédito en EE. UU. — tus compras diarias cuentan.',
+      'Crea historial de crédito en EE. UU. — tus remesas cuentan, no solo tus compras diarias.',
       'Asegurada con efectivo: sin revisión de crédito y sin deudas.',
       'Gana recompensas en lo que compras todos los días.',
     ],
@@ -158,7 +158,7 @@ const es: Translations = {
   },
   wl: {
     eyebrow: 'Lista de espera',
-    h2: 'Únete hoy',
+    h2: 'Regístrate hoy',
     sub: 'Regístrate y empieza a convertir tus remesas en un futuro financiero más sólido en EE. UU.',
     points: ['Un lugar el día del lanzamiento', 'Beneficios de miembro fundador', 'Ayuda a dar forma al producto'],
     f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías cada mes?', provider: 'Proveedor de remesas actual', knowsScore: '¿Conoces tu puntaje de crédito en EE. UU.?', scoreRange: '¿Cuál es tu rango de puntaje?' },

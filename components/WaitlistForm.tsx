@@ -222,7 +222,6 @@ export default function WaitlistForm() {
             Something went wrong. Please try again.
           </p>
         )}
-        <p className="wl-fine">{s.fine}</p>
       </form>
     </div>
   )
