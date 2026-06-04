@@ -58,7 +58,7 @@ const en: Translations = {
   nav: { remit: 'Remittances', card: 'Card', cta: 'Sign up' },
   hero: {
     eyebrow: 'Credit card + remittances',
-    h1: [['Send money ', 'home.'], ['Build credit ', 'doing it.']],
+    h1: [['Send', 'money.'], ['Build', 'credit.'], ['Earn', 'rewards.']],
     sub: "Every remittance you send through Puente counts toward your U.S. credit history. Most cards don't do that. Ours does.",
     cta1: 'Sign up',
     cta2: 'See how it works',
@@ -124,7 +124,7 @@ const es: Translations = {
   nav: { remit: 'Remesas', card: 'Tarjeta', cta: 'Regístrate' },
   hero: {
     eyebrow: 'Tarjeta de crédito + Remesas',
-    h1: [['Envía dinero ', 'a casa.'], ['Crea crédito ', 'al hacerlo.']],
+    h1: [['Envía', 'dinero.'], ['Crea', 'crédito.'], ['Gana', 'recompensas.']],
     sub: 'Cada remesa que envías a través de Puente cuenta para tu historial crediticio en EE. UU. La mayoría de las tarjetas no hacen eso. La nuestra sí.',
     cta1: 'Regístrate',
     cta2: 'Mira cómo funciona',
