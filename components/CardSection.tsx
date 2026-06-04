@@ -32,18 +32,6 @@ export default function CardSection() {
                 </li>
               ))}
             </ul>
-            <div className="need">
-              <span className="nic">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="5" width="18" height="14" rx="2" />
-                  <path d="M3 10h18" />
-                </svg>
-              </span>
-              <span className="ntxt">
-                <b>{t.card.needTitle}</b>
-                {t.card.need}
-              </span>
-            </div>
             <div style={{ marginTop: 6 }}>
               <a className="btn btn--sol" href="#waitlist">{t.card.cta}</a>
             </div>
