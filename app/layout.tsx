@@ -34,14 +34,12 @@ export const metadata: Metadata = {
     description: 'The only card that turns your remittances into credit history. $5 flat fee, real exchange rate, no hidden markup.',
     url: 'https://www.puentefinancial.com',
     siteName: 'Puente Financial',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Puente Financial' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Puente Financial — Send money home. Build credit doing it.',
     description: 'The only card that turns your remittances into credit history. $5 flat fee, real exchange rate, no hidden markup.',
-    images: ['/og-image.png'],
   },
 }
 
