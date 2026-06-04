@@ -172,7 +172,7 @@ const es: Translations = {
     sub: 'Regístrate y empieza a convertir tus remesas en un futuro financiero más sólido en EE. UU.',
     points: ['Un lugar el día del lanzamiento', 'Beneficios de miembro fundador', 'Ayuda a dar forma al producto'],
     f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías cada mes?', provider: 'Proveedor de remesas actual', knowsScore: '¿Conoces tu puntaje de crédito en EE. UU.?', scoreRange: '¿Cuál es tu rango de puntaje?' },
-    scoreOptions: ['Below 580', '580–669', '670–739', '740–799', '800+'],
+    scoreOptions: ['Menos de 580', '580–669', '670–739', '740–799', '800+'],
     amounts: ['Menos de $200', '$200–$500', '$500–$1,000', 'Más de $1,000', 'Aún no envío'],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Transferencia bancaria', 'Aún no envío', 'Otro'],
     ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'tu@correo.com' },

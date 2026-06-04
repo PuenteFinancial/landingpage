@@ -25,8 +25,7 @@ export default function SignupFlow() {
   const [status, setStatus] = useState<Status>('idle')
   const [copied, setCopied] = useState(false)
 
-  const slug = (name.trim().split(/\s+/)[0] || 'amigo').toLowerCase().replace(/[^a-z0-9]/g, '') || 'amigo'
-  const refLink = 'puente.com/r/' + slug
+  const refLink = 'puentefinancial.com'
   const waHref = 'https://wa.me/?text=' + encodeURIComponent(s.success.waText + ' https://' + refLink)
 
   const copyLink = () => {
@@ -243,7 +242,7 @@ export default function SignupFlow() {
         )}
 
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          {step > 1 && (
+          {step > 1 && step < TOTAL && (
             <button
               type="button"
               className="btn btn--ghost"
