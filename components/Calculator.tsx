@@ -42,7 +42,7 @@ export default function Calculator() {
           value={country.name.en}
           onChange={(e) => {
             const found = CALC_COUNTRIES.find((co) => co.name.en === e.target.value)
-            if (found) { setCountry(found); setRate(FX_RATE) }
+            if (found) setCountry(found)
           }}
           aria-label={c.to}
         >
