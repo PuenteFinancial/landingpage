@@ -2,24 +2,18 @@ import { ImageResponse } from 'next/og'
 import fs from 'fs'
 import path from 'path'
 
-export const alt = 'Puente Financial — Send money home. Build credit doing it.'
+export const alt = 'Puente Financial — Envía dinero. Crea crédito. Gana recompensas.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-function loadFont() {
-  return fs.readFileSync(
-    path.join(process.cwd(), 'public/fonts/SpaceGrotesk-Bold.ttf')
-  ).buffer as ArrayBuffer
-}
-
-function loadBackground() {
-  const buf = fs.readFileSync(path.join(process.cwd(), 'public', 'og-background.png'))
-  return `data:image/png;base64,${buf.toString('base64')}`
+function load(file: string) {
+  return fs.readFileSync(path.join(process.cwd(), file))
 }
 
 export default function Image() {
-  const fontData = loadFont()
-  const bgSrc = loadBackground()
+  const bg = `data:image/png;base64,${load('public/og-background.png').toString('base64')}`
+  const groteskData = load('public/fonts/SpaceGrotesk-Bold.ttf').buffer as ArrayBuffer
+  const monoData = load('public/fonts/SpaceMono-Bold.ttf').buffer as ArrayBuffer
 
   return new ImageResponse(
     (
@@ -28,132 +22,97 @@ export default function Image() {
           width: 1200,
           height: 630,
           display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          padding: '72px 80px',
           position: 'relative',
           fontFamily: "'Space Grotesk', sans-serif",
         }}
       >
-        {/* Background image */}
+        {/* Background */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={bgSrc}
-          width={1200}
-          height={630}
-          style={{ position: 'absolute', top: 0, left: 0 }}
-        />
+        <img src={bg} width={1200} height={630} style={{ position: 'absolute', top: 0, left: 0 }} />
 
-        {/* Content overlay */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: 1200,
-            height: 630,
+        {/* Top row: brand + pill */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
+          {/* Brand lockup */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div style={{
+              width: 60, height: 60, borderRadius: 16, background: '#FFD23D',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+                <path d="M34 84 L34 48 A16 16 0 0 1 66 48 L66 84" stroke="#0FB1AC" strokeWidth="11" strokeLinecap="butt" />
+              </svg>
+            </div>
+            <span style={{ fontSize: 34, fontWeight: 700, letterSpacing: '-0.02em', color: '#15211F' }}>
+              Puente
+            </span>
+          </div>
+          {/* Pill */}
+          <span style={{
+            fontFamily: "'Space Mono', monospace",
+            fontSize: 16, fontWeight: 700, letterSpacing: '0.08em',
+            textTransform: 'uppercase', color: '#0B8C88',
+            background: 'rgba(15,177,172,0.10)',
+            border: '1.5px solid rgba(15,177,172,0.25)',
+            padding: '11px 18px', borderRadius: 999,
             display: 'flex',
-            flexDirection: 'column',
-            padding: '48px 72px 44px',
-          }}
-        >
-          {/* Top row: logo + tag */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 9,
-                  background: '#FFD23D',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 16,
-                  fontWeight: 700,
-                  color: '#15211F',
-                }}
-              >
-                n
-              </div>
-              <span style={{ fontSize: 24, fontWeight: 700, color: '#15211F' }}>Puente</span>
+          }}>
+            Crédito + Remesas
+          </span>
+        </div>
+
+        {/* Mid: headline + sub */}
+        <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 780, position: 'relative' }}>
+          {/* H1 — 3 lines */}
+          <div style={{ display: 'flex', flexDirection: 'column', fontSize: 82, fontWeight: 700, lineHeight: 1.0, letterSpacing: '-0.03em', color: '#15211F' }}>
+            <div style={{ display: 'flex' }}>
+              <span>Envía&nbsp;</span><span style={{ color: '#0B8C88' }}>dinero.</span>
             </div>
-            <div
-              style={{
-                border: '1.5px solid #0FB1AC',
-                borderRadius: 100,
-                padding: '7px 18px',
-                fontSize: 13,
-                color: '#0FB1AC',
-                letterSpacing: '0.07em',
-                display: 'flex',
-              }}
-            >
-              CREDIT CARD + REMITTANCES
+            <div style={{ display: 'flex' }}>
+              <span>Crea&nbsp;</span><span style={{ color: '#2C79C2' }}>crédito.</span><span>&nbsp;Gana</span>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <span style={{ color: '#F0703F' }}>recompensas.</span>
             </div>
           </div>
-
-          {/* Headline */}
-          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.05 }}>
-            <div style={{ display: 'flex', fontSize: 76, fontWeight: 700 }}>
-              <span style={{ color: '#15211F' }}>Send&nbsp;</span>
-              <span style={{ color: '#0B8C88' }}>money.</span>
-            </div>
-            <div style={{ display: 'flex', fontSize: 76, fontWeight: 700 }}>
-              <span style={{ color: '#15211F' }}>Build&nbsp;</span>
-              <span style={{ color: '#2C79C2' }}>credit.</span>
-            </div>
-            <div style={{ display: 'flex', fontSize: 76, fontWeight: 700 }}>
-              <span style={{ color: '#15211F' }}>Earn&nbsp;</span>
-              <span style={{ color: '#F0703F' }}>rewards.</span>
-            </div>
-          </div>
-
           {/* Sub */}
-          <div
-            style={{
-              fontSize: 19,
-              color: '#6F7E7B',
-              marginTop: 16,
-              maxWidth: 580,
-              lineHeight: 1.5,
-              display: 'flex',
-              flex: 1,
-            }}
-          >
-            Every remittance you send through Puente counts toward your U.S. credit history. Most cards don't do that. Ours does.
+          <div style={{
+            marginTop: 26, fontSize: 27, lineHeight: 1.4,
+            color: '#33403D', maxWidth: 680, display: 'flex',
+          }}>
+            Cada remesa que envías a través de Puente cuenta para tu historial crediticio en EE. UU. Tarifa fija de $5 al tipo de cambio real.
           </div>
+        </div>
 
-          {/* Badges */}
-          <div style={{ display: 'flex', gap: 12, marginBottom: 8 }}>
-            {[
-              { label: '$5 flat fee', color: '#FFD23D' },
-              { label: 'Real exchange rate', color: '#0FB1AC' },
-              { label: 'No SSN to start', color: '#F0703F' },
-            ].map((b) => (
-              <div
-                key={b.label}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#FFFFFF',
-                  borderRadius: 100,
-                  padding: '8px 16px',
-                  fontSize: 17,
-                  color: '#15211F',
-                  fontWeight: 600,
-                }}
-              >
-                <div style={{ width: 9, height: 9, borderRadius: '50%', background: b.color }} />
-                {b.label}
-              </div>
-            ))}
-          </div>
+        {/* Bottom: chips */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, position: 'relative' }}>
+          {[
+            { label: 'Tarifa fija de $5',    dot: '#0FB1AC' },
+            { label: 'Tipo de cambio real',  dot: '#2C79C2' },
+            { label: 'Sin SSN para empezar', dot: '#F0703F' },
+          ].map((c) => (
+            <div key={c.label} style={{
+              display: 'flex', alignItems: 'center', gap: 11,
+              fontSize: 20, fontWeight: 600, color: '#15211F',
+              background: '#FFFFFF', border: '1.5px solid #E4E6DC',
+              padding: '13px 22px', borderRadius: 999,
+            }}>
+              <div style={{ width: 13, height: 13, borderRadius: '50%', background: c.dot }} />
+              {c.label}
+            </div>
+          ))}
         </div>
       </div>
     ),
     {
       width: 1200,
       height: 630,
-      fonts: [{ name: 'Space Grotesk', data: fontData, weight: 700, style: 'normal' as const }],
+      fonts: [
+        { name: 'Space Grotesk', data: groteskData, weight: 700, style: 'normal' },
+        { name: 'Space Mono',    data: monoData,    weight: 700, style: 'normal' },
+      ],
     }
   )
 }
