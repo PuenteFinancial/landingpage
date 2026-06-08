@@ -71,7 +71,7 @@ export type Translations = {
 }
 
 const en: Translations = {
-  announce: { pre: 'Early access is open.', link: 'Sign up' },
+  announce: { pre: 'Send money home and build credit doing it.', link: 'Sign up' },
   nav: { remit: 'Remittances', how: 'How it works', cta: 'Sign up' },
   hero: {
     eyebrow: 'Remittances + credit building',
@@ -118,11 +118,11 @@ const en: Translations = {
     cta: 'Sign up',
   },
   wl: {
-    eyebrow: 'Waitlist',
+    eyebrow: 'Get started',
     h2: 'Sign up today',
     sub: 'Sign up and start turning your remittances into a stronger U.S. financial future.',
     cta: 'Sign up',
-    points: ['A spot the day we launch', 'Founding-member perks', 'Help shape the product'],
+    points: ['Start building U.S. credit from your first transfer', 'Early member benefits', 'Help us build the best product for you'],
     f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send per transfer?', provider: 'Current remittance provider', knowsScore: 'Do you know your US credit score?', scoreRange: 'What is your credit score range?', remitFrequency: 'How often do you send?', remitYears: 'How long have you been sending remittances?' },
     scoreOptions: ['Below 580', '580–669', '670–739', '740–799', '800+'],
     remitFrequencyOptions: ['Weekly', 'Every 2 weeks', 'Monthly', 'A few times a year', "I don't send yet"],
@@ -158,7 +158,7 @@ const en: Translations = {
 }
 
 const es: Translations = {
-  announce: { pre: 'El acceso anticipado ya está abierto.', link: 'Regístrate' },
+  announce: { pre: 'Envía dinero a casa y crea crédito al hacerlo.', link: 'Regístrate' },
   nav: { remit: 'Remesas', how: 'Cómo funciona', cta: 'Regístrate' },
   hero: {
     eyebrow: 'Remesas + historial de crédito',
@@ -205,11 +205,11 @@ const es: Translations = {
     cta: 'Regístrate',
   },
   wl: {
-    eyebrow: 'Lista de espera',
+    eyebrow: 'Empieza ya',
     h2: 'Regístrate hoy',
     sub: 'Regístrate y empieza a convertir tus remesas en un futuro financiero más sólido en EE. UU.',
     cta: 'Regístrate',
-    points: ['Un lugar el día del lanzamiento', 'Beneficios de miembro fundador', 'Ayuda a dar forma al producto'],
+    points: ['Empieza a crear crédito desde tu primera transferencia', 'Beneficios de miembro anticipado', 'Ayúdanos a construir el mejor producto para ti'],
     f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías por transferencia?', provider: 'Proveedor de remesas actual', knowsScore: '¿Conoces tu puntaje de crédito en EE. UU.?', scoreRange: '¿Cuál es tu rango de puntaje?', remitFrequency: '¿Con qué frecuencia envías?', remitYears: '¿Hace cuánto tiempo envías remesas?' },
     scoreOptions: ['Menos de 580', '580–669', '670–739', '740–799', '800+'],
     remitFrequencyOptions: ['Semanalmente', 'Cada 2 semanas', 'Mensualmente', 'Pocas veces al año', 'Aún no envío'],
