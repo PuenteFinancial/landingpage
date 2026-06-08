@@ -12,6 +12,14 @@ export type Translations = {
     elig: string
     notes: string[]
   }
+  phone: {
+    greeting: string; name: string
+    scoreLabel: string; delta: string
+    remitLabel: string; remitNote: string
+    reported: string; onTime: string
+    sends: { who: string; amt: string }[]
+    cta: string
+  }
   remit: {
     eyebrow: string
     h2: string
@@ -71,6 +79,14 @@ const en: Translations = {
     cta2: 'See how it works',
     elig: 'Works with your ITIN or SSN.',
     notes: ['$5 flat fee', 'Real exchange rate', 'Built for newcomers'],
+  },
+  phone: {
+    greeting: 'Hi,', name: 'María',
+    scoreLabel: 'Your credit score', delta: '▲ +132',
+    remitLabel: 'Your remittances', remitNote: 'Each one counts ↑',
+    reported: 'Reported on time · bureau', onTime: '✓ on time',
+    sends: [{ who: 'To Rosa Santos', amt: '−$200' }, { who: 'To Miguel Ángel', amt: '−$150' }],
+    cta: 'Send money',
   },
   remit: {
     eyebrow: 'Remittances',
@@ -148,6 +164,14 @@ const es: Translations = {
     cta2: 'Mira cómo funciona',
     elig: 'Funciona con tu ITIN o SSN.',
     notes: ['Tarifa fija de $5', 'Tipo de cambio real', 'Hecha para ti'],
+  },
+  phone: {
+    greeting: 'Buenas,', name: 'María',
+    scoreLabel: 'Tu puntaje de crédito', delta: '▲ +132',
+    remitLabel: 'Tus remesas', remitNote: 'Cada una suma ↑',
+    reported: 'Reportada a tiempo · buró', onTime: '✓ a tiempo',
+    sends: [{ who: 'Para Rosa Santos', amt: '−$200' }, { who: 'Para Miguel Ángel', amt: '−$150' }],
+    cta: 'Enviar dinero',
   },
   remit: {
     eyebrow: 'Remesas',

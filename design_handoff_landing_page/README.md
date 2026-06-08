@@ -136,10 +136,19 @@ Smooth scroll + `scroll-margin-top:96px` so anchors clear the sticky nav.
   - `.hero-cta` — `.btn--sol` "Sign up" + `.btn--ghost` "See how it works →" (→ `#remittances`)
   - `.hero-elig` — teal-tinted pill: a small `ID` chip + "Works with your ITIN or SSN."
   - `.hero-note` — three inline items with colored dots: "$5 flat fee" / "Real exchange rate" / "Built for newcomers"
-- **Visual column** (`.hero-visual`): two soft background **blobs** + a **PhoneApp** mock (defined in
-  `brand-ui.jsx`). The phone's in-app content reflects the pivot: an "Enviar / Recargar / **Crédito**"
-  action row and a "**Crédito reportado · Pago a tiempo** ✓" activity line. (The old floating
-  CreditCard has been removed.) Recreate as a static visual or swap in a real product render.
+- **Visual column** (`.hero-visual`, height 580px): two soft background **blobs** + a **CreditPhone**
+  mock (defined in `brand-ui.jsx`, styled via `.cphone*` in `brand.css`). This is the centerpiece —
+  a phone screen that shows **both** halves of the value prop at once:
+  - A dark-teal **credit-score card** (`--mar-900` bg) with an uppercase mono label, a large score
+    (**712**), a sol-yellow **▲ +132** delta pill, and a **rising line/area trend graph** (sol stroke,
+    faint sol gradient fill, highlighted end node).
+  - A **"Your remittances"** list (`t.phone.sends`) of outgoing transfers — recipient, "Reported on
+    time · bureau", the amount (e.g. `−$200`), and a teal **✓ on time** tag — under a "Each one counts ↑" note.
+  - A full-width **"Send money"** sol button.
+  - **All copy is bilingual via `COPY[lang].phone`** (greeting, name, scoreLabel, delta, remitLabel,
+    remitNote, reported, onTime, `sends[]`, cta). The **712 / +132 score is illustrative** (an example
+    product shot, not a promise) — keep it clearly aspirational; do not present it as a guaranteed outcome.
+  - Recreate as a static visual, or wire it to live app data / swap in a real product render.
 
 ### 3. Remittances — interactive calculator (`#remittances`, `.section--mist`)
 - `.feature` 2-col grid: copy left, **calculator** right.
@@ -239,9 +248,10 @@ Smooth scroll + `scroll-margin-top:96px` so anchors clear the sticky nav.
 - **Social meta tags** live in `Puente - Web Landing.html` `<head>` (Open Graph + Twitter). **Swap
   `https://puente.com` for the live domain** so `og:url` / `og:image` resolve to absolute URLs, and
   update the title/description copy to the remittance-first messaging.
-- **Logo, PhoneApp:** CSS/SVG components in `brand-ui.jsx` — no external image files. Recreate as
-  components, or swap in real product renders/photography if available. (`CreditCard` and `SendWidget`
-  also exist in that file but the web landing no longer uses `CreditCard`.)
+- **Logo, CreditPhone:** CSS/SVG components in `brand-ui.jsx` — no external image files. The hero
+  `CreditPhone` (score graph + remittance list) is the key visual; recreate as a component, wire to real
+  app data, or swap in a product render. (`PhoneApp`, `CreditCard`, and `SendWidget` also live in that
+  file but the web landing no longer uses them.)
 - **Flag / icons:** inline SVG + CSS (Mexico flag is a 3-stripe CSS dot; checks/arrows/lock are inline SVG).
 
 ## Files
@@ -250,7 +260,7 @@ Design reference files included in this bundle:
 - `brand.css` — **all design tokens + component styles** (the most important file to port)
 - `landing-web.jsx` — page structure, calculator, and the (unused) waitlist-form logic
 - `landing-copy.jsx` — the full **bilingual copy dictionary** (EN + ES) — reuse strings verbatim
-- `brand-ui.jsx` — shared brand components (Logo, PhoneApp, etc.)
+- `brand-ui.jsx` — shared brand components (Logo, **CreditPhone** = the hero score-graph + remittances visual, etc.)
 - `favicon.svg`, `og-image.png` — site assets (see notes above re: regenerating the OG image)
 
 To preview the reference locally, open `Puente - Web Landing.html` in a browser (it's self-contained

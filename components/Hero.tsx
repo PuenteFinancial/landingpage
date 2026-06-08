@@ -1,7 +1,7 @@
 'use client'
 
 import { useLanguage } from '@/components/LanguageProvider'
-import PhoneAppUI from '@/components/PhoneAppUI'
+import CreditPhoneUI from '@/components/CreditPhoneUI'
 
 const H1_COLORS = ['var(--mar-700)', 'var(--coral)']
 const DOT_CLASSES = ['dot', 'dot dot--cielo', 'dot dot--coral']
@@ -43,7 +43,7 @@ export default function Hero() {
         <div className="hero-visual">
           <span className="blob blob--1" />
           <span className="blob blob--2" />
-          <PhoneAppUI />
+          <CreditPhoneUI t={t.phone} />
         </div>
       </div>
     </header>

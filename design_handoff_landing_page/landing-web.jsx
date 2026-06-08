@@ -229,7 +229,7 @@ function WebLanding() {
           <div className="hero-visual">
             <span className="blob blob--1"></span>
             <span className="blob blob--2"></span>
-            <PhoneApp />
+            <CreditPhone t={t.phone} />
           </div>
         </div>
       </header>
