@@ -20,6 +20,8 @@ export default function SignupFlow() {
   const [country, setCountry] = useState('')
   const [amount, setAmount] = useState('')
   const [provider, setProvider] = useState('')
+  const [remitFrequency, setRemitFrequency] = useState('')
+  const [remitYears, setRemitYears] = useState('')
   const [knowsScore, setKnowsScore] = useState('')
   const [scoreRange, setScoreRange] = useState('')
   const [status, setStatus] = useState<Status>('idle')
@@ -60,6 +62,8 @@ export default function SignupFlow() {
           monthly_send_amount: amount,
           destination_country: country,
           remittance_provider: provider,
+          remit_frequency: remitFrequency || null,
+          remit_years: remitYears || null,
           knows_credit_score: knowsScore || null,
           credit_score_range: scoreRange || null,
           lang,
@@ -200,6 +204,22 @@ export default function SignupFlow() {
                 <select required value={amount} onChange={(e) => setAmount(e.target.value)}>
                   <option value="" disabled>{s.select}</option>
                   {s.amounts.map((o) => <option key={o} value={o}>{o}</option>)}
+                </select>
+              </div>
+            </div>
+            <div className="field-row">
+              <div className="field">
+                <label>{s.f.remitFrequency}</label>
+                <select value={remitFrequency} onChange={(e) => setRemitFrequency(e.target.value)}>
+                  <option value="" disabled>{s.select}</option>
+                  {s.remitFrequencyOptions.map((o) => <option key={o} value={o}>{o}</option>)}
+                </select>
+              </div>
+              <div className="field">
+                <label>{s.f.remitYears}</label>
+                <select value={remitYears} onChange={(e) => setRemitYears(e.target.value)}>
+                  <option value="" disabled>{s.select}</option>
+                  {s.remitYearsOptions.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
               </div>
             </div>

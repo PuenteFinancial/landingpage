@@ -48,8 +48,10 @@ export type Translations = {
     sub: string
     cta: string
     points: string[]
-    f: { name: string; phone: string; email: string; country: string; amount: string; provider: string; knowsScore: string; scoreRange: string }
+    f: { name: string; phone: string; email: string; country: string; amount: string; provider: string; knowsScore: string; scoreRange: string; remitFrequency: string; remitYears: string }
     scoreOptions: string[]
+    remitFrequencyOptions: string[]
+    remitYearsOptions: string[]
     countries: string[]
     amounts: string[]
     providers: string[]
@@ -121,8 +123,10 @@ const en: Translations = {
     sub: 'Sign up and start turning your remittances into a stronger U.S. financial future.',
     cta: 'Sign up',
     points: ['A spot the day we launch', 'Founding-member perks', 'Help shape the product'],
-    f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send each month?', provider: 'Current remittance provider', knowsScore: 'Do you know your US credit score?', scoreRange: 'What is your credit score range?' },
+    f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send per transfer?', provider: 'Current remittance provider', knowsScore: 'Do you know your US credit score?', scoreRange: 'What is your credit score range?', remitFrequency: 'How often do you send?', remitYears: 'How long have you been sending remittances?' },
     scoreOptions: ['Below 580', '580–669', '670–739', '740–799', '800+'],
+    remitFrequencyOptions: ['Weekly', 'Every 2 weeks', 'Monthly', 'A few times a year', "I don't send yet"],
+    remitYearsOptions: ['Less than 1 year', '1–3 years', '3–5 years', 'More than 5 years', "I don't send yet"],
     countries: ['Mexico', 'Other'],
     amounts: ['Less than $200', '$200–$500', '$500–$1,000', 'More than $1,000', "I don't send yet"],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Bank transfer', "I don't send yet", 'Other'],
@@ -206,8 +210,10 @@ const es: Translations = {
     sub: 'Regístrate y empieza a convertir tus remesas en un futuro financiero más sólido en EE. UU.',
     cta: 'Regístrate',
     points: ['Un lugar el día del lanzamiento', 'Beneficios de miembro fundador', 'Ayuda a dar forma al producto'],
-    f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías cada mes?', provider: 'Proveedor de remesas actual', knowsScore: '¿Conoces tu puntaje de crédito en EE. UU.?', scoreRange: '¿Cuál es tu rango de puntaje?' },
+    f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías por transferencia?', provider: 'Proveedor de remesas actual', knowsScore: '¿Conoces tu puntaje de crédito en EE. UU.?', scoreRange: '¿Cuál es tu rango de puntaje?', remitFrequency: '¿Con qué frecuencia envías?', remitYears: '¿Hace cuánto tiempo envías remesas?' },
     scoreOptions: ['Menos de 580', '580–669', '670–739', '740–799', '800+'],
+    remitFrequencyOptions: ['Semanalmente', 'Cada 2 semanas', 'Mensualmente', 'Pocas veces al año', 'Aún no envío'],
+    remitYearsOptions: ['Menos de 1 año', '1–3 años', '3–5 años', 'Más de 5 años', 'Aún no envío'],
     countries: ['México', 'Otro'],
     amounts: ['Menos de $200', '$200–$500', '$500–$1,000', 'Más de $1,000', 'Aún no envío'],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Transferencia bancaria', 'Aún no envío', 'Otro'],
