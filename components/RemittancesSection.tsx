@@ -7,7 +7,7 @@ export default function RemittancesSection() {
   const { t } = useLanguage()
 
   return (
-    <section id="remittances" className="section section--cream">
+    <section id="remittances" className="section section--mist">
       <div className="section-inner">
         <div className="feature">
           <div className="feature-copy">

@@ -2,9 +2,8 @@
 
 import { useLanguage } from '@/components/LanguageProvider'
 import PhoneAppUI from '@/components/PhoneAppUI'
-import CreditCardUI from '@/components/CreditCardUI'
 
-const H1_COLORS = ['var(--mar-700)', 'var(--cielo)', 'var(--coral)']
+const H1_COLORS = ['var(--mar-700)', 'var(--coral)']
 const DOT_CLASSES = ['dot', 'dot dot--cielo', 'dot dot--coral']
 
 export default function Hero() {
@@ -45,10 +44,6 @@ export default function Hero() {
           <span className="blob blob--1" />
           <span className="blob blob--2" />
           <PhoneAppUI />
-          <CreditCardUI
-            variant="sol"
-            style={{ position: 'absolute', right: '-6px', bottom: '34px', transform: 'rotate(-9deg)', width: '300px', zIndex: 3 }}
-          />
         </div>
       </div>
     </header>

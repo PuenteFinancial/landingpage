@@ -169,7 +169,12 @@ function WebLanding() {
   });
   useEffect(() => { try { localStorage.setItem("puente-lang", lang); } catch {} }, [lang]);
   const t = COPY[lang];
-  const h1Colors = ["var(--mar-700)", "var(--cielo)", "var(--coral)"];
+  const h1Colors = ["var(--mar-700)", "var(--coral)"];
+  const stepColors = [
+    { bg: "var(--sol)", fg: "var(--sol-ink)" },
+    { bg: "var(--mar)", fg: "#fff" },
+    { bg: "var(--coral)", fg: "#fff" },
+  ];
 
   return (
     <div>
@@ -187,7 +192,7 @@ function WebLanding() {
           <Logo />
           <div className="nav-links">
             <a href="#remittances">{t.nav.remit}</a>
-            <a href="#card">{t.nav.card}</a>
+            <a href="#how">{t.nav.how}</a>
           </div>
           <div className="nav-right">
             <span className="lang">
@@ -225,13 +230,12 @@ function WebLanding() {
             <span className="blob blob--1"></span>
             <span className="blob blob--2"></span>
             <PhoneApp />
-            <CreditCard variant="sol" className="hero-card" style={{ position: "absolute", right: "-6px", bottom: "34px", transform: "rotate(-9deg)", width: "300px", zIndex: 3 }} />
           </div>
         </div>
       </header>
 
       {/* REMITTANCES — interactive */}
-      <section id="remittances" className="section section--cream">
+      <section id="remittances" className="section section--mist">
         <div className="section-inner">
           <div className="feature">
             <div className="feature-copy">
@@ -246,54 +250,63 @@ function WebLanding() {
         </div>
       </section>
 
-      {/* CARD */}
-      <section id="card" className="section section--surface">
+      {/* HOW IT WORKS */}
+      <section id="how" className="section section--cream">
         <div className="section-inner">
-          <div className="feature feature--flip feature--card">
-            <div className="feature-media" style={{ display: "flex", justifyContent: "center" }}>
-              <CreditCard variant="ink" style={{ transform: "rotate(4deg)", width: "420px" }} />
+          <div className="how-head">
+            <span className="eyebrow">{t.how.eyebrow}</span>
+            <h2 className="h2">
+              {t.how.h2.map((pair, i) => (
+                <span key={i}>{pair[0]}<span style={{ color: "var(--mar-700)" }}>{pair[1]}</span></span>
+              ))}
+            </h2>
+            <p className="lede">{t.how.sub}</p>
+          </div>
+          <div className="how-steps">
+            {t.how.steps.map((s, i) => (
+              <div className="how-step" key={i}>
+                <span className="how-num" style={{ background: stepColors[i].bg, color: stepColors[i].fg }}>{i + 1}</span>
+                <h3 className="h3">{s.t}</h3>
+                <p>{s.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="how-foot">
+            <div className="how-privacy">
+              <span className="hp-ic">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="11" width="16" height="9" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>
+              </span>
+              <span className="hp-txt"><b>{t.how.privacyTitle}</b>{t.how.privacy}</span>
             </div>
-            <div className="feature-copy">
-              <span className="eyebrow">{t.card.eyebrow}</span>
-              <h2 className="h2">
-                {t.card.h2.map((pair, i) => (
-                  <span key={i} style={{ display: "block" }}>{pair[0]}<span style={{ color: i === 0 ? "var(--cielo)" : "var(--coral)" }}>{pair[1]}</span></span>
-                ))}
-              </h2>
-              <p className="lede">{t.card.sub}</p>
-              <ul className="ticks">
-                {t.card.bullets.map((b, i) => (
-                  <li key={i}><span className="tick">✓</span><span>{b}</span></li>
-                ))}
-              </ul>
+            <div className="how-side">
               <div className="need">
                 <span className="nic">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18" /></svg>
                 </span>
-                <span className="ntxt"><b>{t.card.needTitle}</b>{t.card.need}</span>
+                <span className="ntxt"><b>{t.how.eligTitle}</b>{t.how.elig}</span>
               </div>
-              <div style={{ marginTop: 6 }}>
-                <a className="btn btn--sol" href="#waitlist">{t.card.cta}</a>
-              </div>
+              <a className="btn btn--sol" href="#waitlist">{t.how.cta}</a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* WAITLIST */}
+      {/* SIGN UP */}
       <section id="waitlist" className="waitlist">
-        <div className="wl-inner">
-          <div className="wl-copy">
+        <div className="wl-inner" style={{ gridTemplateColumns: "1fr", justifyItems: "center", textAlign: "center" }}>
+          <div className="wl-copy" style={{ alignItems: "center", maxWidth: 560 }}>
             <span className="eyebrow">{t.wl.eyebrow}</span>
             <h2 className="h2">{t.wl.h2}</h2>
             <p className="lede">{t.wl.sub}</p>
-            <ul className="wl-trustline">
+            <ul className="wl-trustline" style={{ alignItems: "flex-start" }}>
               {t.wl.points.map((p, i) => (
                 <li key={i}><span className="tick">✓</span><span>{p}</span></li>
               ))}
             </ul>
+            <div style={{ marginTop: 10 }}>
+              <a className="btn btn--sol" href="#waitlist">{t.wl.cta}</a>
+            </div>
           </div>
-          <WaitlistForm t={t.wl} />
         </div>
       </section>
 

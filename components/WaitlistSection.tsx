@@ -8,12 +8,12 @@ export default function WaitlistSection() {
 
   return (
     <section id="waitlist" className="waitlist">
-      <div className="wl-inner">
-        <div className="wl-copy">
+      <div className="wl-inner" style={{ gridTemplateColumns: '1fr', justifyItems: 'center', textAlign: 'center' }}>
+        <div className="wl-copy" style={{ alignItems: 'center', maxWidth: 560 }}>
           <span className="eyebrow">{s.eyebrow}</span>
           <h2 className="h2">{s.h2}</h2>
           <p className="lede">{s.sub}</p>
-          <ul className="wl-trustline">
+          <ul className="wl-trustline" style={{ alignItems: 'flex-start' }}>
             {s.points.map((p, i) => (
               <li key={i}>
                 <span className="tick">✓</span>
@@ -21,11 +21,11 @@ export default function WaitlistSection() {
               </li>
             ))}
           </ul>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center' }}>
-          <a className="btn btn--sol" href="/signup" style={{ fontSize: 18, padding: '16px 32px' }}>
-            {t.nav.cta}
-          </a>
+          <div style={{ marginTop: 10 }}>
+            <a className="btn btn--sol" href="/signup" style={{ fontSize: 18, padding: '16px 32px' }}>
+              {s.cta}
+            </a>
+          </div>
         </div>
       </div>
     </section>

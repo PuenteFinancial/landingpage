@@ -16,9 +16,9 @@ const spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Puente Financial — Send money home. Build credit doing it.',
+  title: 'Puente Financial — Send money home. Build U.S. credit doing it.',
   description:
-    'The credit card for immigrants. Send money home for $5 flat, build your US credit score automatically through your remittances.',
+    'Send money home for $5 flat at the real exchange rate — and build your U.S. credit history with every payment. One app, built for newcomers.',
   metadataBase: new URL('https://www.puentefinancial.com'),
   icons: {
     icon: [
@@ -30,16 +30,16 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: 'Puente Financial — Send money home. Build credit doing it.',
-    description: 'The only card that turns your remittances into credit history. $5 flat fee, real exchange rate, no hidden markup.',
+    title: 'Puente Financial — Send money home. Build U.S. credit doing it.',
+    description: 'Send money home for $5 flat at the real exchange rate — and build your U.S. credit history with every payment. One app, built for newcomers.',
     url: 'https://www.puentefinancial.com',
     siteName: 'Puente Financial',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Puente Financial — Send money home. Build credit doing it.',
-    description: 'The only card that turns your remittances into credit history. $5 flat fee, real exchange rate, no hidden markup.',
+    title: 'Puente Financial — Send money home. Build U.S. credit doing it.',
+    description: 'Send money home for $5 flat at the real exchange rate — and build your U.S. credit history with every payment. One app, built for newcomers.',
   },
 }
 

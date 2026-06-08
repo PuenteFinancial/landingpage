@@ -2,7 +2,7 @@ export type Lang = 'en' | 'es'
 
 export type Translations = {
   announce: { pre: string; link: string }
-  nav: { remit: string; card: string; cta: string }
+  nav: { remit: string; how: string; cta: string }
   hero: {
     eyebrow: string
     h1: [string, string][]
@@ -23,22 +23,26 @@ export type Translations = {
       total: string; note: string; cta: string
     }
   }
-  card: {
+  how: {
     eyebrow: string
     h2: [string, string][]
     sub: string
-    bullets: string[]
-    needTitle: string
-    need: string
+    steps: { t: string; d: string }[]
+    privacyTitle: string
+    privacy: string
+    eligTitle: string
+    elig: string
     cta: string
   }
   wl: {
     eyebrow: string
     h2: string
     sub: string
+    cta: string
     points: string[]
     f: { name: string; phone: string; email: string; country: string; amount: string; provider: string; knowsScore: string; scoreRange: string }
     scoreOptions: string[]
+    countries: string[]
     amounts: string[]
     providers: string[]
     ph: { name: string; phone: string; email: string }
@@ -58,20 +62,20 @@ export type Translations = {
 
 const en: Translations = {
   announce: { pre: 'Early access is open.', link: 'Sign up' },
-  nav: { remit: 'Remittances', card: 'Card', cta: 'Sign up' },
+  nav: { remit: 'Remittances', how: 'How it works', cta: 'Sign up' },
   hero: {
-    eyebrow: 'Credit card + remittances',
-    h1: [['Send', 'money.'], ['Build', 'credit.'], ['Earn', 'rewards.']],
-    sub: "Every remittance you send through Puente counts toward your U.S. credit history. Most cards don't do that. Ours does.",
+    eyebrow: 'Remittances + credit building',
+    h1: [['Send', 'money.'], ['Build', 'credit.']],
+    sub: 'Send money home — and build your U.S. credit history with every payment you make. One app, built for newcomers.',
     cta1: 'Sign up',
     cta2: 'See how it works',
-    elig: 'No SSN required — start with your passport or government ID.',
-    notes: ['$5 flat fee', 'Real exchange rate'],
+    elig: 'Works with your ITIN or SSN.',
+    notes: ['$5 flat fee', 'Real exchange rate', 'Built for newcomers'],
   },
   remit: {
     eyebrow: 'Remittances',
     h2: 'Money home, the moment you tap send.',
-    sub: 'One flat $5 fee. The real exchange rate, no hidden markup. Every transfer you send also builds your U.S. credit — automatically.',
+    sub: 'One flat $5 fee. The real exchange rate, no markup. And every transfer you send also builds your U.S. credit history.',
     calc: {
       to: 'Sending to',
       you: 'You send', they: 'They receive',
@@ -80,31 +84,35 @@ const en: Translations = {
       cta: 'Sign up',
     },
   },
-  card: {
-    eyebrow: 'The card',
-    h2: [['Feels like ', 'debit.'], ['Works like ', 'credit.']],
-    sub: 'Every transfer you send through Puente builds your credit history in the US. Your responsibility to your family becomes a tool to build a better future.',
-    bullets: [
-      'Build U.S. credit history — your remittances count toward it, not just everyday spending.',
-      'Cash-secured: no credit check, and no debt to fall into.',
-      'Earn rewards on the things you buy every day.',
+  how: {
+    eyebrow: 'How it works',
+    h2: [['Build credit ', 'without thinking about it.']],
+    sub: 'Sending money home is something you already do. With Puente, every on-time payment helps build your U.S. credit history — automatically.',
+    steps: [
+      { t: 'Send money home', d: 'Send like you always do — $5 flat, at the real exchange rate, arriving in seconds.' },
+      { t: 'We report your on-time payments', d: 'Puente reports your payments to the major U.S. credit bureaus on your behalf.' },
+      { t: 'Your credit history grows', d: 'On-time payments build a stronger U.S. credit profile over time — no card, no debt.' },
     ],
-    needTitle: "What you'll need",
-    need: 'A passport or government ID and a U.S. address. No SSN required to start.',
+    privacyTitle: 'Your status stays private',
+    privacy: 'We never store or report your documentation, legal, or immigration status. Your credit-building is based on your payments — nothing else.',
+    eligTitle: "What you'll need",
+    elig: "An ITIN or SSN and a U.S. address. That's it.",
     cta: 'Sign up',
   },
   wl: {
     eyebrow: 'Waitlist',
-    h2: 'Sign Up Today',
-    sub: 'Sign up and start turning your remittances into a stronger financial future in the US.',
+    h2: 'Sign up today',
+    sub: 'Sign up and start turning your remittances into a stronger U.S. financial future.',
+    cta: 'Sign up',
     points: ['A spot the day we launch', 'Founding-member perks', 'Help shape the product'],
     f: { name: 'Full name', phone: 'Phone number', email: 'Email', country: 'Country you send to', amount: 'How much do you send each month?', provider: 'Current remittance provider', knowsScore: 'Do you know your US credit score?', scoreRange: 'What is your credit score range?' },
     scoreOptions: ['Below 580', '580–669', '670–739', '740–799', '800+'],
+    countries: ['Mexico', 'Other'],
     amounts: ['Less than $200', '$200–$500', '$500–$1,000', 'More than $1,000', "I don't send yet"],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Bank transfer', "I don't send yet", 'Other'],
     ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'you@email.com' },
     select: 'Select…',
-    submit: 'Sign up',
+    submit: 'Join the waitlist',
     fine: 'Puente is in early validation and not yet available. Joining adds you to the early-access list.',
     success: {
       title: "You're on the list!",
@@ -123,7 +131,7 @@ const en: Translations = {
     back: 'Back',
   },
   footer: {
-    tagline: 'Send money. Build credit. Earn rewards. One card, built for our community.',
+    tagline: 'Send money home and build U.S. credit doing it. One app, built for our community.',
     rights: '© 2026 Puente Financial, Inc.',
     note: 'Concept in validation — not yet available.',
   },
@@ -131,15 +139,15 @@ const en: Translations = {
 
 const es: Translations = {
   announce: { pre: 'El acceso anticipado ya está abierto.', link: 'Regístrate' },
-  nav: { remit: 'Remesas', card: 'Tarjeta', cta: 'Regístrate' },
+  nav: { remit: 'Remesas', how: 'Cómo funciona', cta: 'Regístrate' },
   hero: {
-    eyebrow: 'Tarjeta de crédito + Remesas',
-    h1: [['Envía', 'dinero.'], ['Crea', 'crédito.'], ['Gana', 'recompensas.']],
-    sub: 'Cada remesa que envías a través de Puente cuenta para tu historial crediticio en EE. UU. La mayoría de las tarjetas no hacen eso. La nuestra sí.',
+    eyebrow: 'Remesas + historial de crédito',
+    h1: [['Envía', 'dinero.'], ['Crea', 'crédito.']],
+    sub: 'Envía dinero a casa — y crea tu historial crediticio en EE. UU. con cada pago que haces. Una sola app, hecha para ti.',
     cta1: 'Regístrate',
     cta2: 'Mira cómo funciona',
-    elig: 'Sin SSN — empieza con tu pasaporte o identificación oficial.',
-    notes: ['Tarifa fija de $5', 'Tipo de cambio real'],
+    elig: 'Funciona con tu ITIN o SSN.',
+    notes: ['Tarifa fija de $5', 'Tipo de cambio real', 'Hecha para ti'],
   },
   remit: {
     eyebrow: 'Remesas',
@@ -153,31 +161,35 @@ const es: Translations = {
       cta: 'Regístrate',
     },
   },
-  card: {
-    eyebrow: 'La tarjeta',
-    h2: [['Se siente como ', 'débito.'], ['Funciona como ', 'crédito.']],
-    sub: 'Cada transferencia que envías a través de Puente construye tu historial crediticio en EE. UU. Tu responsabilidad con tu familia se convierte en una herramienta para construir un mejor futuro.',
-    bullets: [
-      'Crea historial de crédito en EE. UU. — tus remesas cuentan, no solo tus compras diarias.',
-      'Asegurada con efectivo: sin revisión de crédito y sin deudas.',
-      'Gana recompensas en lo que compras todos los días.',
+  how: {
+    eyebrow: 'Cómo funciona',
+    h2: [['Crea crédito ', 'sin siquiera pensarlo.']],
+    sub: 'Enviar dinero a casa es algo que ya haces. Con Puente, cada pago a tiempo ayuda a construir tu historial crediticio en EE. UU. — automáticamente.',
+    steps: [
+      { t: 'Envía dinero a casa', d: 'Envía como siempre — $5 fijos, al tipo de cambio real, llegando en segundos.' },
+      { t: 'Reportamos tus pagos a tiempo', d: 'Puente reporta tus pagos a los principales burós de crédito de EE. UU. por ti.' },
+      { t: 'Tu historial de crédito crece', d: 'Los pagos a tiempo construyen un mejor perfil de crédito con el tiempo — sin tarjeta, sin deudas.' },
     ],
-    needTitle: 'Lo que necesitas',
-    need: 'Un pasaporte o identificación oficial y una dirección en EE. UU. Sin SSN para empezar.',
+    privacyTitle: 'Tu estatus se queda privado',
+    privacy: 'Nunca guardamos ni reportamos tu documentación, estatus legal o migratorio. Tu historial de crédito se basa en tus pagos — nada más.',
+    eligTitle: 'Lo que necesitas',
+    elig: 'Un ITIN o SSN y una dirección en EE. UU. Eso es todo.',
     cta: 'Regístrate',
   },
   wl: {
     eyebrow: 'Lista de espera',
     h2: 'Regístrate hoy',
     sub: 'Regístrate y empieza a convertir tus remesas en un futuro financiero más sólido en EE. UU.',
+    cta: 'Regístrate',
     points: ['Un lugar el día del lanzamiento', 'Beneficios de miembro fundador', 'Ayuda a dar forma al producto'],
     f: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', country: 'País al que envías', amount: '¿Cuánto envías cada mes?', provider: 'Proveedor de remesas actual', knowsScore: '¿Conoces tu puntaje de crédito en EE. UU.?', scoreRange: '¿Cuál es tu rango de puntaje?' },
     scoreOptions: ['Menos de 580', '580–669', '670–739', '740–799', '800+'],
+    countries: ['México', 'Otro'],
     amounts: ['Menos de $200', '$200–$500', '$500–$1,000', 'Más de $1,000', 'Aún no envío'],
     providers: ['Western Union', 'Remitly', 'Félix', 'MoneyGram', 'Transferencia bancaria', 'Aún no envío', 'Otro'],
     ph: { name: 'María Santos', phone: '(555) 123-4567', email: 'tu@correo.com' },
     select: 'Selecciona…',
-    submit: 'Regístrate',
+    submit: 'Unirme a la lista',
     fine: 'Puente está en validación temprana y aún no está disponible. Al unirte entras a la lista de acceso anticipado.',
     success: {
       title: '¡Estás en la lista!',
@@ -196,7 +208,7 @@ const es: Translations = {
     back: 'Atrás',
   },
   footer: {
-    tagline: 'Envía dinero. Crea crédito. Gana recompensas. Una tarjeta, hecha para nuestra comunidad.',
+    tagline: 'Envía dinero a casa y crea crédito en EE. UU. al hacerlo. Una sola app, hecha para nuestra comunidad.',
     rights: '© 2026 Puente Financial, Inc.',
     note: 'Concepto en validación — aún no disponible.',
   },

@@ -33,8 +33,8 @@ export default function PhoneAppUI() {
               Recargar
             </div>
             <div className="send-tile">
-              <div className="ic" style={{ background: 'rgba(44,121,194,.14)', color: '#2C79C2' }}>▤</div>
-              Tarjeta
+              <div className="ic" style={{ background: 'rgba(44,121,194,.14)', color: '#2C79C2' }}>↗</div>
+              Crédito
             </div>
           </div>
           <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: '4px' }}>
@@ -46,9 +46,9 @@ export default function PhoneAppUI() {
             <div className="tv">−$200</div>
           </div>
           <div className="txn">
-            <div className="ti" style={{ background: 'rgba(240,112,63,.14)', color: '#F0703F' }}>$</div>
-            <div className="tt">Mercado Latino<small>Tarjeta · 2% cashback</small></div>
-            <div className="tv">−$48.20</div>
+            <div className="ti" style={{ background: 'rgba(44,121,194,.14)', color: '#2C79C2' }}>✓</div>
+            <div className="tt">Crédito reportado<small>Pago a tiempo · buró</small></div>
+            <div className="tv" style={{ color: '#2C79C2' }}>✓</div>
           </div>
           <div className="txn">
             <div className="ti" style={{ background: 'rgba(255,210,61,.22)', color: '#9a7a00' }}>↓</div>

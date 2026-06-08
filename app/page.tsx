@@ -2,7 +2,7 @@ import AnnounceBanner from '@/components/AnnounceBanner'
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import RemittancesSection from '@/components/RemittancesSection'
-import CardSection from '@/components/CardSection'
+import HowItWorksSection from '@/components/HowItWorksSection'
 import WaitlistSection from '@/components/WaitlistSection'
 import Footer from '@/components/Footer'
 
@@ -13,7 +13,7 @@ export default function Page() {
       <Nav />
       <Hero />
       <RemittancesSection />
-      <CardSection />
+      <HowItWorksSection />
       <WaitlistSection />
       <Footer />
     </main>

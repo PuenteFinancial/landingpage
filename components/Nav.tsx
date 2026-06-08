@@ -15,7 +15,7 @@ export default function Nav() {
         </a>
         <div className="nav-links">
           <a href="#remittances">{t.nav.remit}</a>
-          <a href="#card">{t.nav.card}</a>
+          <a href="#how">{t.nav.how}</a>
         </div>
         <div className="nav-right">
           <LanguageToggle />

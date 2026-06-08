@@ -94,15 +94,15 @@ function SendWidget() {
       </div>
       <div className="sc-mid">
         <span className="ln"></span>
-        <span>1 USD = 18.20 MXN</span>
+        <span>1 USD = 17.20 MXN</span>
         <span className="ln"></span>
       </div>
       <div className="sc-amt" style={{ background: "rgba(15,177,172,.10)" }}>
         <span className="lab">They receive</span>
-        <span className="val">$3,640.00 <small>MXN</small></span>
+        <span className="val">$3,440.00 <small>MXN</small></span>
       </div>
       <div className="sc-foot">
-        <span>Fee <b>$1.99</b></span>
+        <span>Fee <b>$5.00</b></span>
         <span>Arrives <b>in seconds</b></span>
       </div>
     </div>
@@ -142,7 +142,7 @@ function PhoneApp() {
           <div className="send-row">
             <div className="send-tile"><div className="ic" style={{ background:"rgba(15,177,172,.14)", color:"#0B8C88" }}>↗</div>Enviar</div>
             <div className="send-tile"><div className="ic" style={{ background:"rgba(255,210,61,.20)", color:"#9a7a00" }}>＋</div>Recargar</div>
-            <div className="send-tile"><div className="ic" style={{ background:"rgba(44,121,194,.14)", color:"#2C79C2" }}>▤</div>Tarjeta</div>
+            <div className="send-tile"><div className="ic" style={{ background:"rgba(44,121,194,.14)", color:"#2C79C2" }}>↗</div>Crédito</div>
           </div>
           <div style={{ fontFamily:"var(--mono)", fontSize:"11px", letterSpacing:".12em", textTransform:"uppercase", color:"var(--muted)", marginTop:"4px" }}>Actividad</div>
           <div className="txn">
@@ -151,9 +151,9 @@ function PhoneApp() {
             <div className="tv">−$200</div>
           </div>
           <div className="txn">
-            <div className="ti" style={{ background:"rgba(240,112,63,.14)", color:"#F0703F" }}>$</div>
-            <div className="tt">Mercado Latino<small>Tarjeta · 2% cashback</small></div>
-            <div className="tv">−$48.20</div>
+            <div className="ti" style={{ background:"rgba(44,121,194,.14)", color:"#2C79C2" }}>↑</div>
+            <div className="tt">Crédito reportado<small>Pago a tiempo · buró</small></div>
+            <div className="tv" style={{ color:"#0B8C88" }}>✓</div>
           </div>
           <div className="txn">
             <div className="ti" style={{ background:"rgba(255,210,61,.22)", color:"#9a7a00" }}>↓</div>
