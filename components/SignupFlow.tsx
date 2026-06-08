@@ -265,7 +265,7 @@ export default function SignupFlow() {
           {step > 1 && step < TOTAL && (
             <button
               type="button"
-              className="btn btn--ghost"
+              className="btn btn--ghost btn--sm"
               onClick={() => setStep(step - 1)}
             >
               {s.back}
@@ -275,7 +275,7 @@ export default function SignupFlow() {
             className="btn btn--sol"
             type="submit"
             disabled={status === 'loading'}
-            style={{ flex: 1 }}
+            style={{ flex: 1, fontSize: 17, padding: '17px 28px' }}
           >
             {step < TOTAL ? s.next : (status === 'loading' ? '…' : s.submit)}
           </button>
