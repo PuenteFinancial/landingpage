@@ -10,7 +10,7 @@ export default function SignupPage() {
   return (
     <main style={{
       minHeight: '100vh',
-      background: 'var(--cream)',
+      background: 'var(--body)',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -21,9 +21,8 @@ export default function SignupPage() {
         maxWidth: 480,
         marginBottom: 36,
       }}>
-        <a href="/" className="brand" aria-label="Puente Financial — home" style={{ textDecoration: 'none' }}>
-          <span className="arch" aria-hidden="true" />
-          <span>Puente</span>
+        <a href="/" aria-label="Puente Financial — home">
+          <img src="/logo-dark.svg" alt="Puente" style={{ height: 34 }} />
         </a>
       </div>
       <SignupFlow />

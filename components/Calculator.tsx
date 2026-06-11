@@ -74,7 +74,7 @@ export default function Calculator() {
           </div>
         </div>
         <span className="calc-cur">
-          <span className="pip" style={{ background: 'var(--cielo)' }} />
+          <span className="pip" />
           USD
         </span>
       </div>
@@ -114,7 +114,7 @@ export default function Calculator() {
           <span className="calc-out">{fmtInt.format(receive)}</span>
         </div>
         <span className="calc-cur">
-          <span className="pip" style={{ background: 'var(--mar)' }} />
+          <span className="pip" />
           {country.currency}
         </span>
       </div>
@@ -127,7 +127,7 @@ export default function Calculator() {
         <span className="pip" />{c.note}
       </div>
 
-      <a className="btn btn--sol" href="/signup">{c.cta}</a>
+      <a className="btn btn--accent" href="/signup">{c.cta}</a>
     </div>
   )
 }

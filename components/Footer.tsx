@@ -8,20 +8,19 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <div className="footer-inner" style={{ gridTemplateColumns: '1.4fr 1fr', alignItems: 'start' }}>
+      <div className="footer-inner">
         <div>
-          <a href="/" className="brand" aria-label="Puente Financial — home">
-            <span className="arch" aria-hidden="true" />
-            <span>Puente</span>
+          <a href="/" aria-label="Puente Financial — home">
+            <img src="/logo-hero.svg" alt="Puente" style={{ height: 34 }} />
           </a>
-          <p style={{ marginTop: 16, fontSize: 14, maxWidth: 320, color: '#9aa4a1' }}>{t.footer.tagline}</p>
+          <p className="footer-tag">{t.footer.tagline}</p>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start' }}>
-          <LanguageToggle />
+        <div className="footer-right">
+          <LanguageToggle variant="light" />
         </div>
       </div>
       <div className="footer-bottom">
-        <span>{t.footer.rights}</span>
+        <span>{t.footer.rights} · {t.footer.note}</span>
         <span>{lang === 'es' ? 'Español' : 'English'}</span>
       </div>
     </footer>

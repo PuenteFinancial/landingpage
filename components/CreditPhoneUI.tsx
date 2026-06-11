@@ -13,62 +13,54 @@ export default function CreditPhoneUI({ t }: Props) {
     <div className="cphone">
       <div className="cphone-notch" />
       <div className="cphone-screen">
-        {/* greeting */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '26px 20px 4px' }}>
-          <div style={{ fontWeight: 600, fontSize: 15 }}>{t.greeting} <b>{t.name}</b></div>
-          <div className="avatar">M</div>
+        <div className="cp-top">
+          <div className="cp-hi">{t.greeting} <b>{t.name}</b></div>
+          <div className="cp-avatar">M</div>
         </div>
 
-        {/* score card */}
-        <div style={{ margin: '12px 16px 0', background: 'var(--mar-900)', color: '#eafffd', borderRadius: 20, padding: '16px 16px 8px', overflow: 'hidden' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div className="cp-score">
+          <div className="cp-score-head">
             <div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 9.5, letterSpacing: '.14em', textTransform: 'uppercase', opacity: 0.75 }}>{t.scoreLabel}</div>
-              <div style={{ fontSize: 40, fontWeight: 700, letterSpacing: '-.02em', marginTop: 2 }}>712</div>
+              <div className="cp-score-lab">{t.scoreLabel}</div>
+              <div className="cp-score-num">712</div>
             </div>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontFamily: 'var(--mono)', fontWeight: 700, fontSize: 13, color: 'var(--sol)', background: 'rgba(255,210,61,.14)', borderRadius: 999, padding: '5px 9px' }}>
-              {t.delta}
-            </span>
+            <span className="cp-delta">{t.delta}</span>
           </div>
           <svg viewBox="0 0 300 92" width="100%" height="84" style={{ display: 'block', marginTop: 4 }}>
             <defs>
               <linearGradient id="cpFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#FFD23D" stopOpacity={0.3} />
-                <stop offset="100%" stopColor="#FFD23D" stopOpacity={0} />
+                <stop offset="0%" stopColor="#B7E64C" stopOpacity={0.35} />
+                <stop offset="100%" stopColor="#B7E64C" stopOpacity={0} />
               </linearGradient>
             </defs>
             <path d={AREA} fill="url(#cpFill)" />
-            <polyline points={LINE} fill="none" stroke="var(--sol)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx={CHART_PTS[6][0]} cy={CHART_PTS[6][1]} r="6.5" fill="var(--sol)" stroke="#0E4D49" strokeWidth="2.5" />
+            <polyline points={LINE} fill="none" stroke="#B7E64C" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx={CHART_PTS[6][0]} cy={CHART_PTS[6][1]} r="6.5" fill="#B7E64C" stroke="#3D6B55" strokeWidth="2.5" />
           </svg>
         </div>
 
-        {/* remittances list */}
-        <div style={{ padding: '16px 20px 0', flex: 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-            <span style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--muted)' }}>{t.remitLabel}</span>
-            <span style={{ fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--mar-700)', fontWeight: 700 }}>{t.remitNote}</span>
+        <div className="cp-remit">
+          <div className="cp-remit-head">
+            <span className="cp-remit-lab">{t.remitLabel}</span>
+            <span className="cp-remit-note">{t.remitNote}</span>
           </div>
           {t.sends.map((s, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '9px 0', borderBottom: i === 0 ? '1px solid var(--line-2)' : 'none' }}>
-              <span style={{ width: 32, height: 32, borderRadius: 10, flex: 'none', background: 'rgba(15,177,172,.14)', color: '#0B8C88', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>↗</span>
-              <div style={{ lineHeight: 1.3, flex: 1 }}>
-                <div style={{ fontWeight: 600, fontSize: 14 }}>{s.who}</div>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--muted)' }}>{t.reported}</div>
+            <div key={i} className="cp-row">
+              <span className="ti">↗</span>
+              <div className="tt">
+                <b>{s.who}</b>
+                <small>{t.reported}</small>
               </div>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontFamily: 'var(--mono)', fontWeight: 700, fontSize: 13 }}>{s.amt}</div>
-                <div style={{ fontSize: 10.5, color: '#0B8C88', fontWeight: 600, whiteSpace: 'nowrap' }}>{t.onTime}</div>
+              <div className="tv">
+                <b>{s.amt}</b>
+                <small>{t.onTime}</small>
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div style={{ padding: '8px 16px 18px' }}>
-          <div style={{ background: 'var(--sol)', color: 'var(--sol-ink)', borderRadius: 999, padding: 13, textAlign: 'center', fontWeight: 600, boxShadow: '0 8px 20px rgba(255,210,61,.45)' }}>
-            {t.cta}
-          </div>
+        <div className="cp-cta">
+          <div>{t.cta}</div>
         </div>
       </div>
     </div>

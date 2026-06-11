@@ -1,10 +1,6 @@
 'use client'
 
 import { useLanguage } from '@/components/LanguageProvider'
-import CreditPhoneUI from '@/components/CreditPhoneUI'
-
-const H1_COLORS = ['var(--mar-700)', 'var(--coral)']
-const DOT_CLASSES = ['dot', 'dot dot--cielo', 'dot dot--coral']
 
 export default function Hero() {
   const { t } = useLanguage()
@@ -18,14 +14,14 @@ export default function Hero() {
             {t.hero.h1.map((pair, i) => (
               <span key={i} style={{ display: 'block' }}>
                 {pair[0]}{' '}
-                <span style={{ color: H1_COLORS[i] }}>{pair[1]}</span>
+                <span className="accent">{pair[1]}</span>
               </span>
             ))}
           </h1>
           <p className="lede">{t.hero.sub}</p>
           <div className="hero-cta">
-            <a className="btn btn--sol" href="/signup">{t.hero.cta1}</a>
-            <a className="btn btn--ghost" href="#remittances">{t.hero.cta2} →</a>
+            <a className="btn btn--accent btn--lg" href="/signup">{t.hero.cta1}</a>
+            <a className="btn btn--ghost-light btn--lg" href="#remittances">{t.hero.cta2} →</a>
           </div>
           <span className="hero-elig">
             <span className="idot">ID</span>
@@ -34,16 +30,15 @@ export default function Hero() {
           <div className="hero-note">
             {t.hero.notes.map((note, i) => (
               <span key={i}>
-                <span className={DOT_CLASSES[i]} />
+                <span className="dot" />
                 {note}
               </span>
             ))}
           </div>
         </div>
         <div className="hero-visual">
-          <span className="blob blob--1" />
-          <span className="blob blob--2" />
-          <CreditPhoneUI t={t.phone} />
+          <span className="hero-glow" />
+          <img src="/190shots_so.png" alt="Puente app" className="hero-phone-img" width={1080} height={1920} fetchPriority="high" />
         </div>
       </div>
     </header>

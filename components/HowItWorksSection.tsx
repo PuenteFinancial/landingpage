@@ -2,18 +2,12 @@
 
 import { useLanguage } from '@/components/LanguageProvider'
 
-const STEP_COLORS = [
-  { bg: 'var(--sol)', fg: 'var(--sol-ink)' },
-  { bg: 'var(--mar)', fg: '#fff' },
-  { bg: 'var(--coral)', fg: '#fff' },
-]
-
 export default function HowItWorksSection() {
   const { t } = useLanguage()
   const h = t.how
 
   return (
-    <section id="how" className="section section--cream">
+    <section id="how" className="section section--surface">
       <div className="section-inner">
         <div className="how-head">
           <span className="eyebrow">{h.eyebrow}</span>
@@ -21,7 +15,7 @@ export default function HowItWorksSection() {
             {h.h2.map((pair, i) => (
               <span key={i}>
                 {pair[0]}
-                <span style={{ color: 'var(--mar-700)' }}>{pair[1]}</span>
+                <span className="accent">{pair[1]}</span>
               </span>
             ))}
           </h2>
@@ -31,9 +25,7 @@ export default function HowItWorksSection() {
         <div className="how-steps">
           {h.steps.map((step, i) => (
             <div className="how-step" key={i}>
-              <span className="how-num" style={{ background: STEP_COLORS[i].bg, color: STEP_COLORS[i].fg }}>
-                {i + 1}
-              </span>
+              <span className="how-num">{i + 1}</span>
               <h3 className="h3">{step.t}</h3>
               <p>{step.d}</p>
             </div>
@@ -66,7 +58,7 @@ export default function HowItWorksSection() {
                 {h.elig}
               </span>
             </div>
-            <a className="btn btn--sol" href="/signup">{h.cta}</a>
+            <a className="btn btn--ink btn--lg" href="/signup">{h.cta}</a>
           </div>
         </div>
       </div>

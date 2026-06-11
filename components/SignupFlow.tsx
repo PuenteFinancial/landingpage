@@ -125,7 +125,7 @@ export default function SignupFlow() {
   return (
     <div className="wl-card">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-        <span style={{ fontFamily: 'var(--font-mono-space, monospace)', fontSize: 12, color: '#9aa4a1', letterSpacing: '0.05em' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--muted)', letterSpacing: '0.05em' }}>
           {step} / {TOTAL}
         </span>
         <div style={{ display: 'flex', gap: 6 }}>
@@ -136,7 +136,7 @@ export default function SignupFlow() {
                 width: 8,
                 height: 8,
                 borderRadius: '50%',
-                background: i + 1 <= step ? 'var(--sol)' : '#e5e5e0',
+                background: i + 1 <= step ? 'var(--accent)' : 'var(--line)',
                 transition: 'background 0.2s',
               }}
             />
@@ -144,7 +144,7 @@ export default function SignupFlow() {
         </div>
       </div>
 
-      <p style={{ fontFamily: 'var(--font-space, sans-serif)', fontSize: 18, fontWeight: 700, margin: '0 0 20px', color: 'var(--mar)' }}>
+      <p style={{ fontFamily: 'var(--font)', fontSize: 18, fontWeight: 700, margin: '0 0 20px', color: 'var(--ink)' }}>
         {stepInfo.h}
       </p>
 
@@ -272,7 +272,7 @@ export default function SignupFlow() {
             </button>
           )}
           <button
-            className="btn btn--sol"
+            className="btn btn--accent"
             type="submit"
             disabled={status === 'loading'}
             style={{ flex: 1, fontSize: 17, padding: '17px 28px' }}
@@ -282,7 +282,7 @@ export default function SignupFlow() {
         </div>
 
         {status === 'error' && (
-          <p style={{ color: 'var(--coral)', fontFamily: 'var(--font-mono-space, monospace)', fontSize: 12, textAlign: 'center', margin: '4px 0 0' }}>
+          <p style={{ color: 'var(--color-error)', fontFamily: 'var(--mono)', fontSize: 12, textAlign: 'center', margin: '4px 0 0' }}>
             Something went wrong. Please try again.
           </p>
         )}

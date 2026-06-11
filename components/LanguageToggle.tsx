@@ -3,11 +3,11 @@
 import { useLanguage } from '@/components/LanguageProvider'
 import posthog from 'posthog-js'
 
-export default function LanguageToggle() {
+export default function LanguageToggle({ variant }: { variant?: 'light' }) {
   const { lang, setLang } = useLanguage()
 
   return (
-    <span className="lang">
+    <span className={variant === 'light' ? 'lang lang--light' : 'lang'}>
       <button
         className={lang === 'es' ? 'is-active' : ''}
         onClick={() => {

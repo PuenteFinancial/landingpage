@@ -71,7 +71,7 @@ export type Translations = {
 }
 
 const en: Translations = {
-  announce: { pre: 'Send money home and build credit doing it.', link: 'Sign up' },
+  announce: { pre: 'Early access is open.', link: 'Sign up' },
   nav: { remit: 'Remittances', how: 'How it works', cta: 'Sign up' },
   hero: {
     eyebrow: 'Remittances + credit building',
@@ -158,7 +158,7 @@ const en: Translations = {
 }
 
 const es: Translations = {
-  announce: { pre: 'Envía dinero a casa y crea crédito al hacerlo.', link: 'Regístrate' },
+  announce: { pre: 'El acceso anticipado está abierto.', link: 'Regístrate' },
   nav: { remit: 'Remesas', how: 'Cómo funciona', cta: 'Regístrate' },
   hero: {
     eyebrow: 'Remesas + historial de crédito',
