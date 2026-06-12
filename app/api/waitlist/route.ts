@@ -16,19 +16,6 @@ export async function POST(req: NextRequest) {
     if (!phone?.trim()) {
       return NextResponse.json({ error: 'Phone number is required' }, { status: 400 })
     }
-    if (!monthly_send_amount) {
-      return NextResponse.json({ error: 'Monthly send amount is required' }, { status: 400 })
-    }
-    if (!destination_country) {
-      return NextResponse.json({ error: 'Destination country is required' }, { status: 400 })
-    }
-    if (!remittance_provider) {
-      return NextResponse.json({ error: 'Remittance provider is required' }, { status: 400 })
-    }
-    if (!email?.trim()) {
-      return NextResponse.json({ error: 'Email is required' }, { status: 400 })
-    }
-
     const url = new URL(req.url)
     const utm_source = req.headers.get('referer')
       ? new URL(req.headers.get('referer')!).searchParams.get('utm_source')
@@ -39,9 +26,9 @@ export async function POST(req: NextRequest) {
       first_name: first_name.trim(),
       phone: phone.trim(),
       email: email?.trim() || null,
-      monthly_send_amount,
-      destination_country,
-      remittance_provider,
+      monthly_send_amount: monthly_send_amount || null,
+      destination_country: destination_country || null,
+      remittance_provider: remittance_provider || null,
       remit_frequency: remit_frequency || null,
       remit_years: remit_years || null,
       knows_credit_score: knows_credit_score || null,

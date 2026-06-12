@@ -174,7 +174,6 @@ export default function SignupFlow() {
               <div className="field">
                 <label>{s.f.email}</label>
                 <input
-                  required
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -190,7 +189,7 @@ export default function SignupFlow() {
             <div className="field-row">
               <div className="field">
                 <label>{s.f.country}</label>
-                <select required value={country} onChange={(e) => setCountry(e.target.value)}>
+                <select value={country} onChange={(e) => setCountry(e.target.value)}>
                   <option value="" disabled>{s.select}</option>
                   {COUNTRIES.map((c) => (
                     <option key={c.name.en} value={c.name.en}>
@@ -201,7 +200,7 @@ export default function SignupFlow() {
               </div>
               <div className="field">
                 <label>{s.f.amount}</label>
-                <select required value={amount} onChange={(e) => setAmount(e.target.value)}>
+                <select value={amount} onChange={(e) => setAmount(e.target.value)}>
                   <option value="" disabled>{s.select}</option>
                   {s.amounts.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
@@ -225,7 +224,7 @@ export default function SignupFlow() {
             </div>
             <div className="field">
               <label>{s.f.provider}</label>
-              <select required value={provider} onChange={(e) => setProvider(e.target.value)}>
+              <select value={provider} onChange={(e) => setProvider(e.target.value)}>
                 <option value="" disabled>{s.select}</option>
                 {s.providers.map((o) => <option key={o} value={o}>{o}</option>)}
               </select>
